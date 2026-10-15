@@ -70,3 +70,16 @@
 
 复现：`python load_test.py --warmup` 后 `--levels 1,8,...,1408 --tokens 96 --timeout 30`，
 再 `python make_figures.py`。
+
+## ch06（对应[第 6 章](../chapters/ch06-handwritten-generate.md)）
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `mini_generate.py` | 核心库：`sample_token`（temp/top-k/top-p/multinomial）、`naive_generate`（无cache重算）、`kv_generate`（DynamicCache）、`kv_stream`（生成器）、`batched_generate`（左padding） | 被下列脚本 import |
+| `01_alignment.py` | greedy 序列+逐步 logits 对齐 HF generate（含 output_scores 形状坑）；采样器 5 项单测 | alignment_results.json：maxdiff 0.00 |
+| `02_benchmark.py` | 三实现总时（n=32/64/128）、batch B=1..16、流式 TTFT 扫描 | bench_results.json |
+| `03_long_context_shape.py` | S0=512/2048 逐步耗时形状（重算爬升 vs KV 水平） | longctx_results.json |
+| `make_figures.py` | 速度对比+逐步形状、batch 扩展、正确性证据卡+TTFT | 输出到 `images/figures/ch06/` |
+
+运行顺序：`01_alignment → 02_benchmark → 03_long_context_shape → make_figures`。
+无需联网/ollama；首次运行自动加载本地缓存的 Qwen2.5-0.5B（bf16）。

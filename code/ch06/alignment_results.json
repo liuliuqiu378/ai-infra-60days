@@ -1,0 +1,35 @@
+{
+  "alignment": [
+    {
+      "prompt": "用一句话解释 KV Cache：",
+      "n_compared": 32,
+      "tokens_identical": true,
+      "logits_max_absdiff": 0.0,
+      "logits_mean_absdiff": 0.0,
+      "mine_text": "在计算机系统中，K（键）和V（值）是两个基本概念。K是键，V是值。K是键，V"
+    },
+    {
+      "prompt": "Python 里列表和元组最大的区别是",
+      "n_compared": 32,
+      "tokens_identical": true,
+      "logits_max_absdiff": 0.0,
+      "logits_mean_absdiff": 0.0,
+      "mine_text": "\nA. 列表是可变的，元组是不可变的\nB. 列表是不可变的，元组是可"
+    },
+    {
+      "prompt": "写一首关于 GPU 的五言绝句：",
+      "n_compared": 32,
+      "tokens_identical": true,
+      "logits_max_absdiff": 0.0,
+      "logits_mean_absdiff": 0.0,
+      "mine_text": " \nGPU 与 CPU 一样强大， \n但它们的性能却不同。 \nGPU 与 CPU 一样强大， \n但它们的性能却"
+    }
+  ],
+  "sampler_tests": [
+    "temperature=0 贪心选 argmax ✓",
+    "top_k=1 等价贪心 ✓",
+    "top_p=0.5 极端分布 50 次采样全部落在头部 ✓",
+    "top_p=0.9 200 次采样只落在保留前缀（3 个候选）✓",
+    "固定 generator 种子两次采样序列完全一致 ✓"
+  ]
+}
