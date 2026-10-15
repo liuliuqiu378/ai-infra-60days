@@ -1,0 +1,78 @@
+{
+  "coalescing_32M_elems": [
+    {
+      "stride_floats": 1,
+      "byte_gap": 4,
+      "footprint_mib": 128.0,
+      "ms": 0.2928,
+      "useful_gbs": 916.8
+    },
+    {
+      "stride_floats": 2,
+      "byte_gap": 8,
+      "footprint_mib": 256.0,
+      "ms": 0.6628,
+      "useful_gbs": 405.0
+    },
+    {
+      "stride_floats": 4,
+      "byte_gap": 16,
+      "footprint_mib": 512.0,
+      "ms": 1.3358,
+      "useful_gbs": 201.0
+    },
+    {
+      "stride_floats": 8,
+      "byte_gap": 32,
+      "footprint_mib": 1024.0,
+      "ms": 2.6612,
+      "useful_gbs": 100.9
+    },
+    {
+      "stride_floats": 16,
+      "byte_gap": 64,
+      "footprint_mib": 2048.0,
+      "ms": 2.9501,
+      "useful_gbs": 91.0
+    },
+    {
+      "stride_floats": 32,
+      "byte_gap": 128,
+      "footprint_mib": 4096.0,
+      "ms": 4.317,
+      "useful_gbs": 62.2
+    }
+  ],
+  "occupancy_114blocks_thread1elem": [
+    {
+      "num_warps": 1,
+      "ms": 4.3121,
+      "gbs": 110.9
+    },
+    {
+      "num_warps": 2,
+      "ms": 2.2609,
+      "gbs": 211.5
+    },
+    {
+      "num_warps": 4,
+      "ms": 1.2361,
+      "gbs": 386.8
+    },
+    {
+      "num_warps": 8,
+      "ms": 0.7721,
+      "gbs": 619.3
+    },
+    {
+      "num_warps": 16,
+      "ms": 0.58,
+      "gbs": 824.5
+    },
+    {
+      "num_warps": 32,
+      "ms": 0.5567,
+      "gbs": 858.9
+    }
+  ]
+}

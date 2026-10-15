@@ -1,0 +1,92 @@
+{
+  "big_tensor": {
+    "size_mib": 512.0,
+    "copy_ms": 1.1697,
+    "copy_gbs": 918.0,
+    "add_ms": 1.7407,
+    "add_gbs": 925.3,
+    "sum_ms": 0.5666,
+    "sum_read_gbs": 947.6,
+    "scale_ms": 1.1703,
+    "scale_gbs": 917.5
+  },
+  "l2_sweep": [
+    {
+      "size_mib": 1.0,
+      "reps": 2048,
+      "per_kernel_ms": 0.0033,
+      "gbs": 635.3
+    },
+    {
+      "size_mib": 2.0,
+      "reps": 1024,
+      "per_kernel_ms": 0.00324,
+      "gbs": 1294.8
+    },
+    {
+      "size_mib": 4.0,
+      "reps": 512,
+      "per_kernel_ms": 0.00376,
+      "gbs": 2229.5
+    },
+    {
+      "size_mib": 8.0,
+      "reps": 256,
+      "per_kernel_ms": 0.0058,
+      "gbs": 2894.6
+    },
+    {
+      "size_mib": 16.0,
+      "reps": 128,
+      "per_kernel_ms": 0.01004,
+      "gbs": 3342.1
+    },
+    {
+      "size_mib": 32.0,
+      "reps": 64,
+      "per_kernel_ms": 0.01884,
+      "gbs": 3562.6
+    },
+    {
+      "size_mib": 64.0,
+      "reps": 32,
+      "per_kernel_ms": 0.06999,
+      "gbs": 1917.8
+    },
+    {
+      "size_mib": 128.0,
+      "reps": 16,
+      "per_kernel_ms": 0.29094,
+      "gbs": 922.6
+    },
+    {
+      "size_mib": 256.0,
+      "reps": 8,
+      "per_kernel_ms": 0.58221,
+      "gbs": 922.1
+    },
+    {
+      "size_mib": 512.0,
+      "reps": 4,
+      "per_kernel_ms": 1.1654,
+      "gbs": 921.4
+    },
+    {
+      "size_mib": 1024.0,
+      "reps": 2,
+      "per_kernel_ms": 2.33267,
+      "gbs": 920.6
+    }
+  ],
+  "pcie": {
+    "size_mib": 256,
+    "h2d_gbs": 18.6,
+    "d2h_gbs": 18.3
+  },
+  "launch": {
+    "launches": 20000,
+    "eager_per_launch_us": 3.04,
+    "cuda_graph_per_launch_us": 0.897,
+    "speedup": 3.4
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "peak_gemm_tflops": {
+    "fp32_cudacore_8192": 50.4,
+    "tf32_tensor_8192": 76.6,
+    "bf16_tensor_8192": 140.0,
+    "fp16_tensor_8192": 142.9
+  },
+  "bw_roof_gbs": 918.0,
+  "lmhead_M896_N151936_bf16": [
+    {
+      "M": 1,
+      "ms": 0.2898,
+      "tflops": 0.94,
+      "ai_flop_per_byte": 1.0,
+      "eff_gbs": 940.6
+    },
+    {
+      "M": 2,
+      "ms": 0.2925,
+      "tflops": 1.86,
+      "ai_flop_per_byte": 2.0,
+      "eff_gbs": 932.9
+    },
+    {
+      "M": 4,
+      "ms": 0.2925,
+      "tflops": 3.72,
+      "ai_flop_per_byte": 4.0,
+      "eff_gbs": 935.0
+    },
+    {
+      "M": 8,
+      "ms": 0.3005,
+      "tflops": 7.25,
+      "ai_flop_per_byte": 7.9,
+      "eff_gbs": 914.2
+    },
+    {
+      "M": 16,
+      "ms": 0.3046,
+      "tflops": 14.3,
+      "ai_flop_per_byte": 15.7,
+      "eff_gbs": 909.8
+    },
+    {
+      "M": 32,
+      "ms": 0.3119,
+      "tflops": 27.93,
+      "ai_flop_per_byte": 30.9,
+      "eff_gbs": 904.3
+    },
+    {
+      "M": 64,
+      "ms": 0.3228,
+      "tflops": 53.98,
+      "ai_flop_per_byte": 59.7,
+      "eff_gbs": 904.1
+    },
+    {
+      "M": 128,
+      "ms": 0.3423,
+      "tflops": 101.81,
+      "ai_flop_per_byte": 111.9,
+      "eff_gbs": 909.7
+    },
+    {
+      "M": 256,
+      "ms": 0.681,
+      "tflops": 102.35,
+      "ai_flop_per_byte": 198.9,
+      "eff_gbs": 514.7
+    },
+    {
+      "M": 512,
+      "ms": 0.9636,
+      "tflops": 144.66,
+      "ai_flop_per_byte": 325.1,
+      "eff_gbs": 445.0
+    },
+    {
+      "M": 1024,
+      "ms": 1.9139,
+      "tflops": 145.67,
+      "ai_flop_per_byte": 476.4,
+      "eff_gbs": 305.8
+    }
+  ],
+  "mlp_M896_N4864_bf16": [
+    {
+      "M": 1,
+      "ms": 0.0061,
+      "tflops": 1.43,
+      "ai_flop_per_byte": 1.0,
+      "eff_gbs": 1432.3
+    },
+    {
+      "M": 2,
+      "ms": 0.0091,
+      "tflops": 1.93,
+      "ai_flop_per_byte": 2.0,
+      "eff_gbs": 965.4
+    },
+    {
+      "M": 4,
+      "ms": 0.0078,
+      "tflops": 4.48,
+      "ai_flop_per_byte": 4.0,
+      "eff_gbs": 1127.1
+    },
+    {
+      "M": 8,
+      "ms": 0.0078,
+      "tflops": 8.89,
+      "ai_flop_per_byte": 7.9,
+      "eff_gbs": 1123.4
+    },
+    {
+      "M": 16,
+      "ms": 0.0087,
+      "tflops": 16.06,
+      "ai_flop_per_byte": 15.7,
+      "eff_gbs": 1025.0
+    },
+    {
+      "M": 32,
+      "ms": 0.0086,
+      "tflops": 32.62,
+      "ai_flop_per_byte": 30.7,
+      "eff_gbs": 1062.4
+    },
+    {
+      "M": 64,
+      "ms": 0.0089,
+      "tflops": 62.64,
+      "ai_flop_per_byte": 59.0,
+      "eff_gbs": 1061.5
+    },
+    {
+      "M": 128,
+      "ms": 0.0145,
+      "tflops": 76.8,
+      "ai_flop_per_byte": 109.5,
+      "eff_gbs": 701.5
+    },
+    {
+      "M": 256,
+      "ms": 0.0212,
+      "tflops": 105.17,
+      "ai_flop_per_byte": 191.3,
+      "eff_gbs": 549.8
+    },
+    {
+      "M": 512,
+      "ms": 0.039,
+      "tflops": 114.57,
+      "ai_flop_per_byte": 305.4,
+      "eff_gbs": 375.2
+    },
+    {
+      "M": 1024,
+      "ms": 0.069,
+      "tflops": 129.38,
+      "ai_flop_per_byte": 435.1,
+      "eff_gbs": 297.3
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "device": "NVIDIA GeForce RTX 4090 D",
+  "compute_capability": "8.9",
+  "sm_count_measured": 114,
+  "l2_mb_measured": 72.0,
+  "hbm_gib_measured": 23.5,
+  "cuda_cores_spec": 14592,
+  "graphics_max_boost_mhz_measured": 3105.0,
+  "mem_clock_mhz_measured": 10501.0,
+  "bus_bits_spec": 384,
+  "bw_spec_gbs": 1008.1,
+  "fp32_tflops_spec_at_maxboost": 90.6,
+  "fp32_tflops_spec_sustained_2520mhz": 73.5,
+  "ridge_fp32_spec_flop_per_byte": 73.0,
+  "threads_per_warp": 32,
+  "note": "BF16 Tensor Core 实测峰值见 03_gemm_roofline.json；规格表请联网核实 Ada 白皮书"
+}

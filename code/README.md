@@ -83,3 +83,18 @@
 
 运行顺序：`01_alignment → 02_benchmark → 03_long_context_shape → make_figures`。
 无需联网/ollama；首次运行自动加载本地缓存的 Qwen2.5-0.5B（bf16）。
+
+## ch07（对应[第 7 章](../chapters/ch07-gpu-arch-memory-hierarchy.md)）
+
+需要 `triton`（unsloth 环境自带 3.6）。单卡即可，无需模型/联网。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `01_specs.py` | GPU 身份证：SM/L2/时钟 + 推导显存带宽与 FP32 理论（区分实测/【规格】） | gpu_specs.json |
+| `02_bandwidth.py` | 512MiB 大张量 copy/add/sum 带宽、L2 悬崖 1MiB→1GiB 扫描、PCIe H2D/D2H、20000 次小 kernel eager vs CUDA Graph | bandwidth_results.json |
+| `03_gemm_roofline.py` | fp32/tf32/bf16/fp16 8192³ 峰值；真实 lm_head(896×151936)/MLP(896×4864) 瘦 GEMM M=1..1024 落 roofline | gemm_results.json |
+| `04_triton_warps.py` | Triton vadd：跨步访存 coalescing 扫描 + grid=114 隔离 num_warps occupancy | triton_results.json |
+| `make_figures.py` | 硬件层次示意图、Roofline、L2+PCIe、coalescing+occupancy 共 4 张 | 输出到 `images/figures/ch07/` |
+
+运行顺序：`01_specs → 02_bandwidth → 03_gemm_roofline → 04_triton_warps → make_figures`。
+注意 04 的 coalescing 扫描 stride=32 时瞬时占用约 8 GiB 显存。
