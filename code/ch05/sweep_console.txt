@@ -1,0 +1,17 @@
+C=   1 | 成功率 100.0% | TTFT p50/p90      33/     33 ms | E2E p50/p90     176/    176 ms | TPOT   1.5 ms | 聚合     547 tok/s
+C=   8 | 成功率 100.0% | TTFT p50/p90     127/    128 ms | E2E p50/p90     478/    478 ms | TPOT   3.7 ms | 聚合    1605 tok/s
+C=  16 | 成功率 100.0% | TTFT p50/p90     226/    228 ms | E2E p50/p90     889/    890 ms | TPOT   7.0 ms | 聚合    1724 tok/s
+C=  32 | 成功率 100.0% | TTFT p50/p90     294/    298 ms | E2E p50/p90    1595/   1599 ms | TPOT  13.7 ms | 聚合    1919 tok/s
+C=  48 | 成功率 100.0% | TTFT p50/p90     309/   1835 ms | E2E p50/p90    1610/   2553 ms | TPOT  13.7 ms | 聚合    1803 tok/s
+C=  64 | 成功率 100.0% | TTFT p50/p90    1898/   1908 ms | E2E p50/p90    3207/   3216 ms | TPOT  13.7 ms | 聚合    1909 tok/s
+C=  96 | 成功率 100.0% | TTFT p50/p90    1945/   3548 ms | E2E p50/p90    3235/   4856 ms | TPOT  13.8 ms | 聚合    1896 tok/s
+C= 128 | 成功率 100.0% | TTFT p50/p90    3519/   5145 ms | E2E p50/p90    4829/   6496 ms | TPOT  13.8 ms | 聚合    1890 tok/s
+C= 192 | 成功率 100.0% | TTFT p50/p90    5153/   8389 ms | E2E p50/p90    6465/   9698 ms | TPOT  13.8 ms | 聚合    1898 tok/s
+C= 256 | 成功率 100.0% | TTFT p50/p90    6728/  11569 ms | E2E p50/p90    8024/  12883 ms | TPOT  13.7 ms | 聚合    1906 tok/s
+C= 384 | 成功率 100.0% | TTFT p50/p90   10005/  16465 ms | E2E p50/p90   11315/  17796 ms | TPOT  13.8 ms | 聚合    1899 tok/s
+C= 512 | 成功率 100.0% | TTFT p50/p90   13170/  22902 ms | E2E p50/p90   14498/  24217 ms | TPOT  13.8 ms | 聚合    1900 tok/s
+C= 640 | 成功率  90.0% | TTFT p50/p90   14912/  26257 ms | E2E p50/p90   16247/  27553 ms | TPOT  13.8 ms | 聚合    1892 tok/s
+C= 896 | 成功率  64.3% | TTFT p50/p90   14906/  26282 ms | E2E p50/p90   16224/  27598 ms | TPOT  13.8 ms | 聚合    1887 tok/s
+C=1152 | 成功率  55.6% | TTFT p50/p90   14944/  25601 ms | E2E p50/p90   16350/  26962 ms | TPOT  14.5 ms | 聚合    2052 tok/s
+C=1408 | 成功率  40.9% | TTFT p50/p90   14424/  25877 ms | E2E p50/p90   15989/  27184 ms | TPOT  13.8 ms | 聚合    1915 tok/s
+saved /home/hmn-cjy/liuliuqiu/ai-knowledge-test/ai-infra-60days/code/ch05/sweep_results.json

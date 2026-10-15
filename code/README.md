@@ -54,3 +54,19 @@
 | `RESULTS.md` | 2026-10-15 实测原始记录（含方法学与数字溯源） | — |
 
 运行顺序：`01 → 02 → make_figures`。注意 transformers 4.56 的 StaticCache 为 lazy 分配。
+
+## ch05（对应[第 5 章](../chapters/ch05-metrics-collapse-curve.md)）
+
+零三方依赖（标准库 http.client + 线程 Barrier）。需要 ollama；多槽实例需另起：
+`OLLAMA_HOST=127.0.0.1:11435 OLLAMA_NUM_PARALLEL=32 OLLAMA_MODELS=<模型根> ollama serve`
+（默认 11434 的系统服务通常 -np 1，压不出本章曲线；模型根需可写，manifests 可从
+/data/ollama/models 复制、blobs 软链）。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `load_test.py` | closed-model 流式压测：逐 chunk 量 TTFT/E2E/eval_count，30s deadline | 见 RESULTS.md；sweep_results.json |
+| `make_figures.py` | 崩塌双轴图、Goodput 饱和图、4B 锚点形态对照 | 输出到 `images/figures/ch05/` |
+| `RESULTS.md` / `sweep_console.txt` | 2026-10-15 16 档实测原始记录与控制台全文 | — |
+
+复现：`python load_test.py --warmup` 后 `--levels 1,8,...,1408 --tokens 96 --timeout 30`，
+再 `python make_figures.py`。
