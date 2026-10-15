@@ -27,3 +27,16 @@
 |---|---|---|---|
 | `salary_calc.py` | 把 JD 的"30-60k·15薪"换算成年现金包（万元） | 无 | 清昴 28-49 万、瑞芯微 45-90 万等样例 + 交互输入 |
 | `make_figures.py` | 生成真实薪资区间图、产业链地图 | matplotlib + 中文字体 | 输出到 `images/figures/ch02/` |
+
+## ch03（对应[第 3 章](../chapters/ch03-train-vs-infer-prefill-decode.md)）
+
+需要 torch + transformers + 一张 CUDA 卡（模型 Qwen2.5-0.5B，HF 镜像可下）。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `02_roofline_microbench.py` | 量出本卡 bf16 算力墙与 copy 带宽墙 | 4090D：146 TFLOPS / 920 GB/s / 拐点 159 |
+| `01_prefill_decode_probe.py` | prefill TFLOPS、decode eager/CUDA-Graph 水位、batch 1→32 扩展 | 见 RESULTS.md；输出 probe_results.json |
+| `make_figures.py` | Roofline 打点图、batch 扩展图、实现水位阶梯图 | 输出到 `images/figures/ch03/` |
+| `RESULTS.md` | 2026-10-15 实测原始记录 | — |
+
+运行顺序：`02（量屋顶）→ 01（量模型）→ make_figures`。
