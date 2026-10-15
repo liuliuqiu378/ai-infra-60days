@@ -1,0 +1,93 @@
+{
+  "m05": {
+    "L": 24,
+    "nh": 14,
+    "nkv": 2,
+    "d": 64,
+    "per_tok": 12288,
+    "weight_gib": 0.9202077388763428,
+    "kv_formula_gib": 0.0234375,
+    "kv_actual_gib": 0.0234375,
+    "shape": [
+      1,
+      2,
+      2048,
+      64
+    ],
+    "static_real_shape": [
+      1,
+      2,
+      2048,
+      64
+    ],
+    "static_real_kv_gib": 0.0234375,
+    "act_gib": 0.6001269817352295,
+    "peak_gib": 1.5437722206115723
+  },
+  "m7": {
+    "L": 28,
+    "nh": 28,
+    "nkv": 4,
+    "d": 128,
+    "per_tok": 57344,
+    "mha_per_tok": 401408,
+    "weight_gib": 14.18519115447998,
+    "cases": [
+      {
+        "name": "batch=1 seq=2048",
+        "B": 1,
+        "seq": 2048,
+        "kv_gib": 0.1097412109375,
+        "formula_gib": 0.109375,
+        "pct_of_24g": 0.004669838763297873,
+        "oom": false
+      },
+      {
+        "name": "batch=1 seq=32768",
+        "B": 1,
+        "seq": 32768,
+        "kv_gib": 1.75,
+        "formula_gib": 1.75,
+        "pct_of_24g": 0.07446808510638298,
+        "oom": false
+      },
+      {
+        "name": "batch=1 seq=131072",
+        "B": 1,
+        "seq": 131072,
+        "kv_gib": 7.0,
+        "formula_gib": 7.0,
+        "pct_of_24g": 0.2978723404255319,
+        "oom": false
+      },
+      {
+        "name": "batch=8 seq=8192",
+        "B": 8,
+        "seq": 8192,
+        "kv_gib": 3.5,
+        "formula_gib": 3.5,
+        "pct_of_24g": 0.14893617021276595,
+        "oom": false
+      },
+      {
+        "name": "batch=32 seq=8192",
+        "B": 32,
+        "seq": 8192,
+        "kv_gib": 14.0,
+        "formula_gib": 14.0,
+        "pct_of_24g": 0.5957446808510638,
+        "oom": false
+      },
+      {
+        "name": "batch=32 seq=32768",
+        "B": 32,
+        "seq": 32768,
+        "kv_gib": null,
+        "formula_gib": 56.0,
+        "pct_of_24g": null,
+        "oom": true
+      }
+    ],
+    "kv_i8_32k_gib": 0.875
+  }
+}

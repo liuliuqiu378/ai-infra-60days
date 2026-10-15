@@ -40,3 +40,17 @@
 | `RESULTS.md` | 2026-10-15 实测原始记录 | — |
 
 运行顺序：`02（量屋顶）→ 01（量模型）→ make_figures`。
+
+## ch04（对应[第 4 章](../chapters/ch04-autoregression-kv-cache.md)）
+
+需要 torch + transformers 4.5x（模型 Qwen2.5-0.5B 必须有；7B **无需下载权重**，
+脚本只用本地/官方 config 与 safetensors 索引 + 官方 StaticCache 布局真实分配 KV 显存）。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `01_kv_accounting.py` | KV 公式 vs 官方 StaticCache 真实分配（0.5B 交叉验证+7B 六场景+int8） | 7B：56 KiB/token、2048=0.11 GiB、B32×32K 触发 OOM；偏差 0.00%；kv_results.json |
+| `02_with_without_cache.py` | 逐 token 对比有无 KV Cache（n=64/128/256） | 计算量 43/77/142× vs 墙钟 ~1.6×；nocache_results.json |
+| `make_figures.py` | KV 增长曲线、无cache单步成本+双倍数图、显存三巨头图 | 输出到 `images/figures/ch04/` |
+| `RESULTS.md` | 2026-10-15 实测原始记录（含方法学与数字溯源） | — |
+
+运行顺序：`01 → 02 → make_figures`。注意 transformers 4.56 的 StaticCache 为 lazy 分配。
