@@ -20,3 +20,10 @@
 | `RESULTS.md` | 2026-10-15 实测原始记录（数字溯源） | — | — |
 
 运行顺序：`01 → 02 → 03 → make_figures`。前三个脚本只依赖 Python 标准库。
+
+## ch02（对应[第 2 章](../chapters/ch02-industry-job-map.md)）
+
+| 脚本 | 作用 | 前置 | 预期输出 |
+|---|---|---|---|
+| `salary_calc.py` | 把 JD 的"30-60k·15薪"换算成年现金包（万元） | 无 | 清昴 28-49 万、瑞芯微 45-90 万等样例 + 交互输入 |
+| `make_figures.py` | 生成真实薪资区间图、产业链地图 | matplotlib + 中文字体 | 输出到 `images/figures/ch02/` |
