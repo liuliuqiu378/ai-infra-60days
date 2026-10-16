@@ -114,3 +114,17 @@
 运行顺序：`nsys profile 01 → nsys export/stats → 02_comm_model → 03_selection → make_figures`。
 注意：必须用 base 模型（Instruct 缓存权重已被删）、加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`；
 **不要**用 `nsys -c cudaProfilerApi`（本机死锁）。详见目录内 RESULTS.md。
+
+## ch09（对应[第 9 章](../chapters/ch09-weight-formats.md)）
+
+新风格：以论文/官方规范/社区评测公开数据为主，**无性能跑测**；仅一个秒级、
+不加载权重、纯标准库的结构观察脚本。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `parse_safetensors.py` | 手动解析 safetensors 头（8B 长度 + JSON + 数据区），实测张量清单/头部占比/offset 连续性；缺省解析本机 Qwen2.5-0.5B，可传入任意路径 | stdout JSON：file_MB/header_bytes(32280, 0.003%)/n_tensors(290)/total_params(494032768)/data_bytes=参数×2/contiguous=True |
+
+运行：`python parse_safetensors.py [可选路径]`（无需 conda/联网/GPU）。
+外部引用数据（GPTQ/AWQ/SmoothQuant/QLoRA 论文、llama.cpp perplexity README、
+vLLM quantization 文档、OCP FP8 规范）全部标注来源与 2026-10-16 检索日期，
+汇总见目录内 RESULTS.md。
