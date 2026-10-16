@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.19（第 1–18 章已完成，逐章写作中）
+- **版本**：v0.20（第 1–19 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -104,7 +104,7 @@
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
 | 18 | 43–45 | [七大引擎横评与选型决策树](chapters/ch18-engine-comparison.md) | vLLM/SGLang/TensorRT-LLM/LMDeploy/TGI/MLC-LLM/KTransformers 七维横评（联网更新）；**Ollama 真相：Go 封装层做了哪三件事、为什么会"变笨"**；选型决策流程图 | 11,000 | ✅ |
-| 19 | 46–47 | [同模型双引擎对打实验](chapters/ch19-engine-benchmark-duel.md) | 同硬件同模型同 prompt 集，两套引擎出 TTFT/TPOT/吞吐/崩溃点对比；控制变量方法论；产出一份可放进作品集的对比报告 | 7,000 | ⏳ |
+| 19 | 46–47 | [同模型双引擎对打实验](chapters/ch19-engine-benchmark-duel.md) | 同硬件同模型同 prompt 集，两套引擎出 TTFT/TPOT/吞吐/崩溃点对比；控制变量方法论；产出一份可放进作品集的对比报告 | 7,000 | ✅ |
 
 ### 阶段 7｜前沿方向（Day 48–52）
 
@@ -226,3 +226,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.17 | 第 16 章完成（前缀缓存、结构化输出与压测实战）：SGLang 论文原文数字（吞吐 6.4×、命中率 50%–99%、cache-aware 达最优 96%、**Chatbot Arena 生产命中 74.1%**、TTFT 降 1.7×、开销 <0.3%、压缩 FSM +1.6×）；XGrammar 论文原文数字（CFG mask 100×/端到端 80×、**同引擎 Outlines 44.2→6.8 ms/token**、消融 65.776→0.018 ms、掩码存储 160MB→0.46MB、近零开销 6.2→6.3 ms）；**vLLM APC 与结构化输出行号核验**（cache.py:142 默认开、kv_cache_utils.py:707 链式块 hash「整块才入账」:723、block_pool LRU :785/801、四后端链 structured_output/__init__.py:141-176、采样前落点 gpu_model_runner.py:4328-4332、请求级后端切换报错 sampling_params.py:1244-1261、压测 --random-prefix-len datasets.py:1909）；APC vs RadixAttention 9 行对比总表 + OpenAI 参数全解 + 阶梯压测五条控制变量；程序图 3 张（code/ch16/make_figures.py）；零性能跑测 |
 | 2026-10-16 | v0.18 | 第 17 章完成（**项目二：mini-vLLM 从零实现**，首个 projects/ 章节）：四模块架构 + 行数预算算账 910 行 + **每步循环五件事**；vLLM v1 模块对照表行号核验（scheduler.py:84/621/2700、kv_cache_manager.py:371、kv_cache_coordinator.py:460、gpu_model_runner.py:3935/4299、sampler.py:308）；**nano-vllm 官方 benchmark 原文**（1,200 行、4070L/0.6B、1361.84 vs 1434.13 tok/s=1.05×，输出 token 同为 133,966 的受控纪律）；**三级对齐验收**（L1/L2 逐 token + L3 批量不变性）与 ch06 maxdiff 0.00 锚点；**三组 benchmark 对照设计**（B1 无 cache/B2 StaticCache 净贡献/B3 batch 聚合，token 总数必须相同）；D33–D42 十天里程碑、七坑、作品集三件套（仓库/博客/简历）；程序图 3 张（code/ch17/make_figures.py）；零性能跑测 |
 | 2026-10-16 | v0.19 | 第 18 章完成（七大引擎横评与选型决策树）：**TGI 退场一手证据**（GitHub README Caution 原文 maintenance mode + 官方点名 vLLM/SGLang/llama.cpp/MLX 继任，2026-10-16 抓取）；七引擎七维横评总表（现状全联网核实：vLLM 0.28.0/Dynamo 一等后端、LMDeploy 2026-09-28 发版+EuroSys 2027、KTransformers 入 Kimi-K2 官方部署指南、TRT-LLM"15–25%"标第三方量级口径）；**Ollama 三件事拆解**（模型分发/进程调度/默认参数注入，架构事实交叉核对官方文档与第三方架构分析）与**"变笨"四根因+速查表**（Q4 打包、temperature 0.8 与 num_ctx 2048 官方默认值、repeat_penalty 1.0/1.1 资料分歧标注以实测为准、无请求级调度）；四步决策树（先删后选：风险→硬件→场景→前缀）+ 五场景走查；七坑、三动手任务、自检三问、3 条面试话术；程序图 1 张（code/ch18/make_figures.py）；数据登记 code/ch18/RESULTS.md；零性能跑测 |
+| 2026-10-16 | v0.20 | 第 19 章完成（同模型双引擎对打实验）：**方法论为主**——第三方对打数字四份盘点（jarvislabs H100、agentnative/spheron 112 vs 120 ms 与无前缀 2–5% 噪声口径、CSDN 2.4–4.1× 标未核原始出处、Bench360 arXiv:2511.16682 论文口径，均标检索 2026-10-16）；**七条控制变量清单**（ch16 五条扩成对打七条，缓存显式含源码核验 --no-enable-prefix-caching 与 /reset_prefix_cache 路由 :140）；三负载×三假设（H1 打平/H2 前缀/H3 崩溃点）与 prompt 集冻结方法；双引擎官方压测 CLI 对等出数（vllm bench serve 字段与示例值、sglang.bench_serving 四指标与 num-prompts≥5×C 稳态规则）；**崩溃点三条判定线**（L1 错误>1%、L2 p99 超 SLO、L3 吞吐环比<5%，回扣 ch05 40.9%/1900 tok/s）与五步扫描；报告八段模板+七坑+三任务+3 条面试话术；程序图 2 张（code/ch19/make_figures.py）；数据登记 code/ch19/RESULTS.md（含实测回填区）；零性能跑测 |
