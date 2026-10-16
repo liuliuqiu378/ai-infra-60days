@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.13（第 1–12 章已完成，逐章写作中）
+- **版本**：v0.14（第 1–13 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -93,7 +93,7 @@
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
-| 13 | 31–34 | [PagedAttention：把虚拟内存搬进显存](chapters/ch13-pagedattention.md) | 显存碎片老痛点；页/块/Block Table；为什么消碎片、为什么能前缀共享；**OS 概念↔LLM 推理概念对照总表**；vLLM block manager 源码走读；官方架构实图解读 | 13,000 | ⏳ |
+| 13 | 31–34 | [PagedAttention：把虚拟内存搬进显存](chapters/ch13-pagedattention.md) | 三种显存浪费（实测有效率仅 20.4%–38.2%）；分页三机制与 block table；**OS 概念↔LLM 推理对照总表 19 行**；fork/COW 共享（beam 省 44%–66% KV）；vLLM v1 源码走读（v1 弃 swap 只重算）；论文官方架构图（CC BY 4.0） | 15,000 | ✅ |
 | 14 | 35–38 | [Continuous Batching 与调度器](chapters/ch14-continuous-batching-scheduler.md) | 餐厅翻台类比；Static batching 浪费在哪；请求队列/调度循环/抢占(preemption)/换入换出/Chunked Prefill；v1 引擎 scheduler 源码精读；改参数实验 | 12,000 | ⏳ |
 | 15 | 39–40 | [并行策略：TP/PP/SP/EP 与通信量](chapters/ch15-parallel-strategies.md) | 各切什么、通信多大、何时用；all-reduce/all-gather 代价；TP 加速比为什么不线性；MoE 的 EP；切分示意图 + 通信量对照表；多卡实测 | 11,000 | ⏳ |
 | 16 | 41–42 | [前缀缓存、结构化输出与压测实战](chapters/ch16-prefix-cache-structured-output.md) | APC vs SGLang RadixAttention；agent 场景为什么要 JSON 约束、引擎层怎么做（guided decoding/grammar/xgrammar）；vLLM OpenAI 服务参数全解；压测出自家并发-延迟曲线 | 10,000 | ⏳ |
@@ -220,3 +220,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.11 | 第 10 章完成（项目一）+ ch03/ch04 补业界对照卡片：体积账以 HF 官方 API 字节为准（三模型七档实测 + 有效 bpw 表 + 跨模型预测误差 1%）、质量以公开评测为准（统一评测 Q4_0<Q4_K_M 反直觉点、联通论文 Q2 探智 -8.91%/AIME -63%）、速度以论文 llama-bench 为准（CPU decode 3.5×、prefill 非单调）；3 张文献数据图；交付 8GB 选型建议；本章零性能跑测 |
 | 2026-10-16 | v0.12 | 第 11 章完成（llama.cpp 源码精读）：基于 commit e707790c 的文件级源码导航表（src/ggml/tools/common 四层、行数实测）、入口→GGUF 加载→计算图→后端调度→采样链五段走读（20+ 处 文件:行号 引用逐条核验）、"CLI 本地 spawn server"反直觉事实、ggml_tensor/cgraph/backend_i 三件套结构体逐字段解读、grep/read 动手任务 4 则；零性能跑测、零配图 |
 | 2026-10-16 | v0.13 | 第 12 章完成（混合推理、offload 与并发天花板）：offload 悬崖（InventiveHQ 公开基准 14B Q4 -ngl 扫描 2.89→12.5→43.18）+ **三时延公式**算账三档吻合（算账 13 vs 实测 12.5）；源码定位分层安放/流水线并行 6 条件；并发天花板三道墙公式 + 官方 batched-bench 样例表逐行解读（每路 41.57→14.54、TTFT 涨 31×）；多卡 split-mode 四挡与"流水线吞吐/张量延迟"官方口径；8GB 跑 14B 三路对质回扣 ch10；**数据流大图 + 悬崖图 2 张**；零性能跑测 |
+| 2026-10-16 | v0.14 | 第 13 章完成（PagedAttention）：论文 arXiv:2309.06180 原文数字体系（有效率 20.4%–38.2%、800 KB/token、吞吐 2–4×、同批 2.2×/4.3×、beam 省 44%–66%、block=16 消融、recompute≤20% swap）；**OS↔LLM 对照总表 19 行**；vLLM v1 源码走读（commit 642c18d，KVCacheBlock/allocate_slots/抢占重算逐行核验，**v1 无 swap 路径**）；论文官方架构图入 images/real/（CC BY 4.0，建 CREDITS.md）+ 程序图 2 张；零性能跑测 |

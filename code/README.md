@@ -156,3 +156,18 @@ matplotlib 生成（数据全部登记在 RESULTS.md 可复核重建）。
 数据源（全部 2026-10-16）：InventiveHQ "The VRAM Cliff"（2026-06-26 发布，
 数据/脚本开源）、llama.cpp `tools/batched-bench/README.md` 与 `docs/multi-gpu.md`
 与 `tools/server/README.md`、源码 commit e707790c、本书 ch03/ch04/ch07/ch10。
+
+## ch13（对应[第 13 章](../chapters/ch13-pagedattention.md)）
+
+新风格：理论 + 论文/源码公开数据为主，**无性能跑测**；1 个绘图脚本
+（纯 matplotlib、不碰 GPU、秒级）。
+
+| 文件 | 作用 | 预期输出 |
+|---|---|---|
+| `make_figures.py` | 生成浪费对比图与 block table 示意图 | 输出到 `images/figures/ch13/fig1_waste.png`、`fig2_block_table.png` |
+
+运行：`python make_figures.py`（无需 conda/联网/GPU，需 matplotlib + 中文字体）。
+数据源（全部 2026-10-16）：论文 arXiv:2309.06180v1（SOSP '23，CC BY 4.0）、
+vLLM 源码 commit 642c18d、docs.vllm.ai；正文所有数字与行号汇总见目录内
+RESULTS.md。另：论文官方架构图（Fig.4）存于 `images/real/`，许可登记于
+`images/real/CREDITS.md`。
