@@ -181,6 +181,17 @@ $$
 
 B=32 时单请求从 141 掉到 129，是 KV 读取和激活变大的早期信号——batch 不是越大越好，**最优 batch 由显存容量、KV 增长、TPOT 红线三者共同决定**，这正是第 5、14、23 章反复算的账。
 
+> **【业界数据对照卡片】你的 ×29.4 和 vLLM 论文的 24×/2–4×，为什么都对**
+>
+> | 口径 | 数字 | 测的是什么 | 来源 |
+> |---|---|---|---|
+> | 本章实测（4090D，0.5B，同引擎手动拼批） | ×**29.4**（141→4,138 tok/s），步时仅 +9% | **单点物理上界**：纯 kernel 侧、batch 拼大能赚多少 | code/ch03 D 组 |
+> | vLLM 官方基准（ShareGPT 真实分布） | 比 HuggingFace Transformers **14–24×**、比 TGI **2.2–3.5×** | **整套系统换 naive 基线** | vLLM 官方 benchmark |
+> | vLLM SOSP'23 论文（同行评审口径） | 同延迟下比 FasterTransformer/Orca **2–4×**，KV 浪费从 **60–80% 压到 <4%** | **系统对系统的硬核对比** | PagedAttention, SOSP 2023 |
+>
+> 三个数字不冲突：倍数取决于**基线是谁**（naive HF 服务是公认弱基线）和**改了几层**（我们只动 batch，论文动了调度+分页+连续批处理）。面试引用倍数必须带基线和场景，否则会被人一句话问倒。
+> 来源：vLLM 论文 "Efficient Memory Management for Large Language Model Serving with PagedAttention"（SOSP 2023）及官方基准页，2026-10-16 检索。
+
 ---
 
 ## 3.7 全书技术地图：每一项优化，都在搬这两堵墙

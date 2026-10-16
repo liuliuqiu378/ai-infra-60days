@@ -128,3 +128,18 @@
 外部引用数据（GPTQ/AWQ/SmoothQuant/QLoRA 论文、llama.cpp perplexity README、
 vLLM quantization 文档、OCP FP8 规范）全部标注来源与 2026-10-16 检索日期，
 汇总见目录内 RESULTS.md。
+
+## ch10（对应[第 10 章](../chapters/ch10-quantization-lab.md)，项目一）
+
+新风格：理论 + 论文/官方评测数据为主，**无性能跑测**；唯一脚本为零成本体积核算
+（纯标准库、秒级、不下载权重、不碰 GPU，把 HF 官方字节数固化为常量）。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `01_size_accounting.py` | 三模型（14B/7B/3B）× 七档体积 → 有效 bpw；用 7B 的 bpw 跨模型预测 14B/3B 体积；名义 bit 低估量 | bpw 表（Q4_K_M=4.87/4.92/5.00）、预测误差 1.0%/1.7%、14B-Q4 名义低估 1.60GB |
+
+运行：`python 01_size_accounting.py`（无需 conda/联网/GPU）。
+数据源（全部 2026-10-16）：HF API `/tree`（体积）、HF safetensors 元数据
+（参数量）、arXiv:2505.02390/2601.14277/2306.00978（质量与速度）、llama.cpp
+perplexity README、Unsloth Dynamic 2.0 文档（KLD）。汇总见目录内 RESULTS.md；
+交付件在 `projects/quant-lab/8GB-selection-guide.md`。
