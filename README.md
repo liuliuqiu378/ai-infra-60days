@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.11（第 1–10 章已完成，逐章写作中）
+- **版本**：v0.12（第 1–11 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -86,7 +86,7 @@
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
-| 11 | 20–24 | [llama.cpp 源码精读：从 GGUF 到计算图](chapters/ch11-llamacpp-source-reading.md) | 项目定位与 GGUF 设计哲学；ggml 张量排布与计算图；后端抽象（CUDA/Metal/Vulkan/CPU）；**文件级源码导航表**；main→load→graph→backend→sample 走读 | 12,000 | ⏳ |
+| 11 | 20–24 | [llama.cpp 源码精读：从 GGUF 到计算图](chapters/ch11-llamacpp-source-reading.md) | 项目定位与 GGUF 设计哲学；ggml 张量排布与计算图；后端抽象（CUDA/Metal/Vulkan/CPU）；**文件级源码导航表**；main→load→graph→backend→sample 走读 | 12,000 | ✅ |
 | 12 | 25–30 | [混合推理、offload 与并发天花板](chapters/ch12-llamacpp-offload-bench.md) | `-ngl` 分层卸载原理；8G 卡跑 14B Q4_K_M 从 40+ tok/s 腰斩到 10–15 tok/s 的体感实验；为什么它做不了真批处理；llama-bench `-p 1..32` 实测；**手画 GGUF→token 数据流大图** | 10,000 | ⏳ |
 
 ### 阶段 5｜上战场：vLLM 精读 + mini-vLLM（Day 31–42）
@@ -218,3 +218,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.9 | 第 8 章完成：nsys 首次正式 profile（decode 一步 980 kernel/GPU busy 22.7%/kernel 静态画像 FA 仅 2 block）、α+β 通信建模（TP 必须 NVLink·PP 能走网络全部算成数字）、昇腾 910B/C/HCCS 与寒武纪生态对位表、选型速算器 3 组真实配置（$0.15/百万 token 起），4 张图；ncu 权限坑留档 |
 | 2026-10-16 | v0.10 | 第 9 章完成 + 全书写作风格调整（文字/理论/公开数据为主）：safetensors 字节级解析（Qwen2.5-0.5B：头部 0.003%、数据区=参数×2B 零开销）、GGUF 六段结构、数值格式与粒度全表、GPTQ/AWQ/SmoothQuant/QLoRA 论文核心数字、llama.cpp 官方 k-quant 评测（L3-8B 与 L2-70B 双表）、vLLM 格式×硬件支持矩阵；本章零性能跑测 |
 | 2026-10-16 | v0.11 | 第 10 章完成（项目一）+ ch03/ch04 补业界对照卡片：体积账以 HF 官方 API 字节为准（三模型七档实测 + 有效 bpw 表 + 跨模型预测误差 1%）、质量以公开评测为准（统一评测 Q4_0<Q4_K_M 反直觉点、联通论文 Q2 探智 -8.91%/AIME -63%）、速度以论文 llama-bench 为准（CPU decode 3.5×、prefill 非单调）；3 张文献数据图；交付 8GB 选型建议；本章零性能跑测 |
+| 2026-10-16 | v0.12 | 第 11 章完成（llama.cpp 源码精读）：基于 commit e707790c 的文件级源码导航表（src/ggml/tools/common 四层、行数实测）、入口→GGUF 加载→计算图→后端调度→采样链五段走读（20+ 处 文件:行号 引用逐条核验）、"CLI 本地 spawn server"反直觉事实、ggml_tensor/cgraph/backend_i 三件套结构体逐字段解读、grep/read 动手任务 4 则；零性能跑测、零配图 |
