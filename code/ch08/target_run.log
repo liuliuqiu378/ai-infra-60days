@@ -1,0 +1,16 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.10.0+cu128).
+Traceback (most recent call last):
+  File "/home/hmn-cjy/liuliuqiu/ai-knowledge-test/ai-infra-60days/code/ch08/01_profile_target.py", line 10, in <module>
+    model = AutoModelForCausalLM.from_pretrained(name, torch_dtype=torch.bfloat16).cuda().eval()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hmn-cjy/miniforge3/envs/unsloth/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hmn-cjy/miniforge3/envs/unsloth/lib/python3.11/site-packages/transformers/modeling_utils.py", line 288, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hmn-cjy/miniforge3/envs/unsloth/lib/python3.11/site-packages/transformers/modeling_utils.py", line 5058, in from_pretrained
+    and checkpoint_files[0].endswith(".safetensors")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'endswith'

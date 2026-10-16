@@ -98,3 +98,19 @@
 
 运行顺序：`01_specs → 02_bandwidth → 03_gemm_roofline → 04_triton_warps → make_figures`。
 注意 04 的 coalescing 扫描 stride=32 时瞬时占用约 8 GiB 显存。
+
+## ch08（对应[第 8 章](../chapters/ch08-interconnect-hardware-selection.md)）
+
+需要 nsys（`/usr/local/cuda-12.8/bin/nsys`，unsloth 环境跑模型）；02/03/出图为纯计算无需 GPU。
+
+| 脚本 | 作用 | 预期输出 |
+|---|---|---|
+| `01_profile_target.py` | nsys 目标：Qwen2.5-0.5B **base** bf16，prefill+decode 64 步，NVTX 标注每步 | 被 nsys 采样生成 decode_profile.nsys-rep/sqlite |
+| `02_comm_model.py` | α+β 通信模型：5 种链路上 TP（decode/prefill）all-reduce 与 PP 边界传输 | comm_results.json |
+| `03_selection.py` | 选型速算器：4 款卡 × 7B-Q4/32B-bf16/70B-Q4 三组场景的显存/t_token/成本 | selection_results.json |
+| `02_ncu_target.py` / `run_ncu.sh` | ncu 采样封装（本机因 `RmProfilingAdminOnly=1` 报 ERR_NVGPUCTRPERM，坑已写入正文） | ncu_probe.txt（失败留档） |
+| `make_figures.py` | 带宽/延迟阶梯、TP vs PP、decode 解剖、选型成本共 4 张 | 输出到 `images/figures/ch08/` |
+
+运行顺序：`nsys profile 01 → nsys export/stats → 02_comm_model → 03_selection → make_figures`。
+注意：必须用 base 模型（Instruct 缓存权重已被删）、加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`；
+**不要**用 `nsys -c cudaProfilerApi`（本机死锁）。详见目录内 RESULTS.md。

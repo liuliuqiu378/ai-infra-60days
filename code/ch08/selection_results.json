@@ -1,0 +1,129 @@
+{
+  "cards": {
+    "RTX4090D_24G": {
+      "mem": 24,
+      "bw": 918,
+      "usd_hr": 0.35
+    },
+    "L40S_48G": {
+      "mem": 48,
+      "bw": 864,
+      "usd_hr": 0.79
+    },
+    "A100_80G_SXM": {
+      "mem": 80,
+      "bw": 2039,
+      "usd_hr": 1.2
+    },
+    "H100_80G_SXM": {
+      "mem": 80,
+      "bw": 3350,
+      "usd_hr": 2.8
+    }
+  },
+  "scenarios": [
+    {
+      "model": "7B-Q4",
+      "ctx": 4096,
+      "conc": 32,
+      "card": "RTX4090D_24G",
+      "cards": 1,
+      "weight_gib": 3.26,
+      "kv_gib": 3.5,
+      "total_need_gib": 8.26,
+      "per_token_wall_ms": 3.81,
+      "usd_per_mtok": 0.15
+    },
+    {
+      "model": "7B-Q4",
+      "ctx": 4096,
+      "conc": 32,
+      "card": "L40S_48G",
+      "cards": 1,
+      "weight_gib": 3.26,
+      "kv_gib": 3.5,
+      "total_need_gib": 8.26,
+      "per_token_wall_ms": 4.05,
+      "usd_per_mtok": 0.36
+    },
+    {
+      "model": "7B-Q4",
+      "ctx": 4096,
+      "conc": 32,
+      "card": "A100_80G_SXM",
+      "cards": 1,
+      "weight_gib": 3.26,
+      "kv_gib": 3.5,
+      "total_need_gib": 8.26,
+      "per_token_wall_ms": 1.72,
+      "usd_per_mtok": 0.23
+    },
+    {
+      "model": "7B-Q4",
+      "ctx": 4096,
+      "conc": 32,
+      "card": "H100_80G_SXM",
+      "cards": 1,
+      "weight_gib": 3.26,
+      "kv_gib": 3.5,
+      "total_need_gib": 8.26,
+      "per_token_wall_ms": 1.04,
+      "usd_per_mtok": 0.33
+    },
+    {
+      "model": "32B-bf16",
+      "ctx": 4096,
+      "conc": 16,
+      "card": "A100_80G_SXM",
+      "cards": 2,
+      "weight_gib": 59.6,
+      "kv_gib": 32.0,
+      "total_need_gib": 93.1,
+      "per_token_wall_ms": 15.69,
+      "usd_per_mtok": 8.47
+    },
+    {
+      "model": "32B-bf16",
+      "ctx": 4096,
+      "conc": 16,
+      "card": "H100_80G_SXM",
+      "cards": 2,
+      "weight_gib": 59.6,
+      "kv_gib": 32.0,
+      "total_need_gib": 93.1,
+      "per_token_wall_ms": 9.55,
+      "usd_per_mtok": 12.04
+    },
+    {
+      "model": "70B-Q4",
+      "ctx": 4096,
+      "conc": 16,
+      "card": "A100_80G_SXM",
+      "cards": 1,
+      "weight_gib": 32.6,
+      "kv_gib": 16.0,
+      "total_need_gib": 50.1,
+      "per_token_wall_ms": 17.17,
+      "usd_per_mtok": 4.63
+    },
+    {
+      "model": "70B-Q4",
+      "ctx": 4096,
+      "conc": 16,
+      "card": "H100_80G_SXM",
+      "cards": 1,
+      "weight_gib": 32.6,
+      "kv_gib": 16.0,
+      "total_need_gib": 50.1,
+      "per_token_wall_ms": 10.45,
+      "usd_per_mtok": 6.58
+    }
+  ],
+  "price_note": "2026-09/10 海外现货中位，行情波动大；国内/昇腾报价需另行联网核实",
+  "card_kinds": {
+    "RTX4090D_24G": "PCIe4, 无 NVLink",
+    "L40S_48G": "PCIe4, 数据中心",
+    "A100_80G_SXM": "NVLink3 600",
+    "H100_80G_SXM": "NVLink4 900"
+  }
+}

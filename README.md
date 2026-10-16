@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.8（第 1–7 章已完成，逐章写作中）
+- **版本**：v0.9（第 1–8 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收"继续"后再写下一章
 - **数字纪律**：所有性能数字必须可复现/可溯源；无法当场核实的数字一律标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -73,7 +73,7 @@
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
 | 7 | 11–13 | [GPU 架构与显存层次](chapters/ch07-gpu-arch-memory-hierarchy.md) | 4090D 身份证（114 SM/72MiB L2/GDDR6X 384-bit）+Triton 首写；实测显存 918–948 GB/s（91–94%规格）、L2 悬崖 3563→923、PCIe 18.6；bf16 Tensor Core 140 TFLOPS；真实 lm_head 形 roofline 落点（M=1 仅 0.94 TFLOPS=峰值 0.7%），拐点 153 与第 3 章 159 互证；coalescing 14.7×、occupancy 7.7×、launch 3.04µs vs Graph 0.9µs；t_token=P·b/BW 延迟下限与八大优化的总根源表 | 11,000 | ✅ |
-| 8 | 14–15 | [互联、国产硬件与选型实操](chapters/ch08-interconnect-hardware-selection.md) | PCIe/NVLink/NVSwitch/IB/RoCE/RDMA 带宽表；为什么 TP 必须 NVLink、PP 能走网络；昇腾 910/CANN/寒武纪生态；"模型→量化→显存→硬件→成本"速查表 + 3 个真实配置；nvidia-smi/nsys/ncu 抓第一次 profile | 10,000 | ⏳ |
+| 8 | 14–15 | [互联、国产硬件与选型实操](chapters/ch08-interconnect-hardware-selection.md) | PCIe/NVLink/NVSwitch/IB/RoCE/RDMA 带宽表；为什么 TP 必须 NVLink、PP 能走网络；昇腾 910/CANN/寒武纪生态；“模型→量化→显存→硬件→成本”速查表 + 3 个真实配置；nvidia-smi/nsys/ncu 抓第一次 profile | 13,700 | ✅ |
 
 ### 阶段 3｜模型的物理形态：格式与量化（Day 16–19）
 
@@ -215,3 +215,4 @@ ai-infra-60days/
 | 2026-10-15 | v0.6 | 第 5 章完成：16 档 closed-model 流式压测（32槽 ollama/llama.cpp，1→1408 并发），三阶段崩塌曲线+Goodput 饱和图+4B 锚点形态对照，3 张实测图；服务级 KV 预分配 12.6GiB 回扣第 4 章公式 |
 | 2026-10-15 | v0.7 | 第 6 章完成：手写 generate 全栈（greedy/采样/流式/批量），与 HF 逐位零误差对齐（96 token + 93 步 logits maxdiff 0.00）；速度实测（手写 KV 比 HF 快 10%、S0=2048 4.2×、batch16 ×15.5、TTFT 扫描），3 张实测图 |
 | 2026-10-15 | v0.8 | 第 7 章完成：GPU 架构与显存层次。全部数字本机实测（带宽/L2/PCIe/四精度 GEMM 峰值/瘦矩阵 roofline/Triton coalescing+occupancy/launch vs CUDA Graph），4 张实测图；给出 decode 延迟下限公式与优化技术第一性原理索引表 |
+| 2026-10-16 | v0.9 | 第 8 章完成：nsys 首次正式 profile（decode 一步 980 kernel/GPU busy 22.7%/kernel 静态画像 FA 仅 2 block）、α+β 通信建模（TP 必须 NVLink·PP 能走网络全部算成数字）、昇腾 910B/C/HCCS 与寒武纪生态对位表、选型速算器 3 组真实配置（$0.15/百万 token 起），4 张图；ncu 权限坑留档 |

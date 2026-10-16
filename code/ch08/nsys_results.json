@@ -1,0 +1,77 @@
+{
+  "prefill": {
+    "kernels": 1003,
+    "gpu_us": 3009.5,
+    "wall_us": 294204.3
+  },
+  "decode_n_steps": 63,
+  "decode_kernels_per_step_median": 980,
+  "decode_kernels_per_step_p10": 980,
+  "decode_wall_us_median": 10928.1,
+  "decode_gpu_us_median": 2477.6,
+  "decode_gpu_busy_pct": 22.7,
+  "decode_gap_us_median": 8449.1,
+  "category_per_step_avg": {
+    "gemv/gemm(cublas)": [
+      169.0,
+      1171.4
+    ],
+    "flash_attention": [
+      24.0,
+      170.3
+    ],
+    "elementwise/激活": [
+      439.0,
+      589.0
+    ],
+    "norm(reduce/pow/rsqrt/mean)": [
+      148.0,
+      221.4
+    ],
+    "copy/cat/index": [
+      200.0,
+      326.5
+    ],
+    "argmax/sample": [
+      0.0,
+      0.0
+    ],
+    "其他": [
+      0.0,
+      0.0
+    ]
+  },
+  "whole_window": {
+    "gpu_kernel_total_ms": 177.6,
+    "gpu_kernel_instances": 62808,
+    "cpu_api": {
+      "cudaLaunchKernel": {
+        "calls": 62639,
+        "total_ms": 282.9,
+        "median_us": 2.24
+      },
+      "cudaMemcpyAsync": {
+        "calls": 4955,
+        "total_ms": 93.7,
+        "median_us": 3.24
+      },
+      "cuLibraryLoadData": {
+        "calls": 14,
+        "total_ms": 27.7,
+        "median_us": 1865.89
+      },
+      "cudaDeviceSynchronize": {
+        "calls": 128,
+        "total_ms": 16.7,
+        "median_us": 9.74
+      },
+      "cudaMalloc": {
+        "calls": 48,
+        "total_ms": 3.3,
+        "median_us": 62.72
+      }
+    },
+    "launches_per_decode_step": 980,
+    "note": "nsys 插账使墙钟膨胀(10.9ms vs ch06 裸跑 7.2ms)；kernel 数与单 kernel GPU 时长为结构事实；argmax/sample 在 NVTX range 外故未计入分类"
+  }
+}

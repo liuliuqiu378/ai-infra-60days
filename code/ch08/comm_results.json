@@ -1,0 +1,312 @@
+{
+  "links": {
+    "PCIe4_x16(4090D实测)": {
+      "bw": 18.6,
+      "alpha_us": 25.0
+    },
+    "PCIe5_x16(规格)": {
+      "bw": 64.0,
+      "alpha_us": 20.0
+    },
+    "NVLink3(A100规格)": {
+      "bw": 300.0,
+      "alpha_us": 10.0
+    },
+    "NVLink4(H100规格)": {
+      "bw": 450.0,
+      "alpha_us": 8.0
+    },
+    "IB_NDR_400Gb(规格)": {
+      "bw": 50.0,
+      "alpha_us": 15.0
+    }
+  },
+  "tp_decode": [
+    {
+      "model": "Qwen2.5-0.5B",
+      "link": "PCIe4_x16(4090D实测)",
+      "tp": 2,
+      "weight_read_ms": 0.545,
+      "comm_ms_per_token": 1.206,
+      "comm_over_compute_pct": 221.4
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "link": "PCIe5_x16(规格)",
+      "tp": 2,
+      "weight_read_ms": 0.545,
+      "comm_ms_per_token": 0.962,
+      "comm_over_compute_pct": 176.6
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "link": "NVLink3(A100规格)",
+      "tp": 2,
+      "weight_read_ms": 0.545,
+      "comm_ms_per_token": 0.48,
+      "comm_over_compute_pct": 88.2
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "link": "NVLink4(H100规格)",
+      "tp": 2,
+      "weight_read_ms": 0.545,
+      "comm_ms_per_token": 0.384,
+      "comm_over_compute_pct": 70.5
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "link": "IB_NDR_400Gb(规格)",
+      "tp": 2,
+      "weight_read_ms": 0.545,
+      "comm_ms_per_token": 0.722,
+      "comm_over_compute_pct": 132.6
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe4_x16(4090D实测)",
+      "tp": 2,
+      "weight_read_ms": 2.09,
+      "comm_ms_per_token": 1.427,
+      "comm_over_compute_pct": 68.3
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe4_x16(4090D实测)",
+      "tp": 4,
+      "weight_read_ms": 1.045,
+      "comm_ms_per_token": 1.44,
+      "comm_over_compute_pct": 137.9
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe4_x16(4090D实测)",
+      "tp": 8,
+      "weight_read_ms": 0.522,
+      "comm_ms_per_token": 1.447,
+      "comm_over_compute_pct": 277.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe5_x16(规格)",
+      "tp": 2,
+      "weight_read_ms": 2.09,
+      "comm_ms_per_token": 1.128,
+      "comm_over_compute_pct": 54.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe5_x16(规格)",
+      "tp": 4,
+      "weight_read_ms": 1.045,
+      "comm_ms_per_token": 1.132,
+      "comm_over_compute_pct": 108.3
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "PCIe5_x16(规格)",
+      "tp": 8,
+      "weight_read_ms": 0.522,
+      "comm_ms_per_token": 1.134,
+      "comm_over_compute_pct": 217.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink3(A100规格)",
+      "tp": 2,
+      "weight_read_ms": 2.09,
+      "comm_ms_per_token": 0.562,
+      "comm_over_compute_pct": 26.9
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink3(A100规格)",
+      "tp": 4,
+      "weight_read_ms": 1.045,
+      "comm_ms_per_token": 0.563,
+      "comm_over_compute_pct": 53.8
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink3(A100规格)",
+      "tp": 8,
+      "weight_read_ms": 0.522,
+      "comm_ms_per_token": 0.563,
+      "comm_over_compute_pct": 107.8
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink4(H100规格)",
+      "tp": 2,
+      "weight_read_ms": 2.09,
+      "comm_ms_per_token": 0.449,
+      "comm_over_compute_pct": 21.5
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink4(H100规格)",
+      "tp": 4,
+      "weight_read_ms": 1.045,
+      "comm_ms_per_token": 0.45,
+      "comm_over_compute_pct": 43.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "NVLink4(H100规格)",
+      "tp": 8,
+      "weight_read_ms": 0.522,
+      "comm_ms_per_token": 0.45,
+      "comm_over_compute_pct": 86.1
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "IB_NDR_400Gb(规格)",
+      "tp": 2,
+      "weight_read_ms": 2.09,
+      "comm_ms_per_token": 0.85,
+      "comm_over_compute_pct": 40.7
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "IB_NDR_400Gb(规格)",
+      "tp": 4,
+      "weight_read_ms": 1.045,
+      "comm_ms_per_token": 0.855,
+      "comm_over_compute_pct": 81.8
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "link": "IB_NDR_400Gb(规格)",
+      "tp": 8,
+      "weight_read_ms": 0.522,
+      "comm_ms_per_token": 0.858,
+      "comm_over_compute_pct": 164.2
+    }
+  ],
+  "pp_decode": [
+    {
+      "link": "PCIe4_x16(4090D实测)",
+      "pp": 2,
+      "bytes": 7168,
+      "us": 12.9
+    },
+    {
+      "link": "PCIe4_x16(4090D实测)",
+      "pp": 4,
+      "bytes": 21504,
+      "us": 38.7
+    },
+    {
+      "link": "PCIe4_x16(4090D实测)",
+      "pp": 8,
+      "bytes": 50176,
+      "us": 90.2
+    },
+    {
+      "link": "PCIe5_x16(规格)",
+      "pp": 2,
+      "bytes": 7168,
+      "us": 10.1
+    },
+    {
+      "link": "PCIe5_x16(规格)",
+      "pp": 4,
+      "bytes": 21504,
+      "us": 30.3
+    },
+    {
+      "link": "PCIe5_x16(规格)",
+      "pp": 8,
+      "bytes": 50176,
+      "us": 70.8
+    },
+    {
+      "link": "NVLink3(A100规格)",
+      "pp": 2,
+      "bytes": 7168,
+      "us": 5.0
+    },
+    {
+      "link": "NVLink3(A100规格)",
+      "pp": 4,
+      "bytes": 21504,
+      "us": 15.1
+    },
+    {
+      "link": "NVLink3(A100规格)",
+      "pp": 8,
+      "bytes": 50176,
+      "us": 35.2
+    },
+    {
+      "link": "NVLink4(H100规格)",
+      "pp": 2,
+      "bytes": 7168,
+      "us": 4.0
+    },
+    {
+      "link": "NVLink4(H100规格)",
+      "pp": 4,
+      "bytes": 21504,
+      "us": 12.0
+    },
+    {
+      "link": "NVLink4(H100规格)",
+      "pp": 8,
+      "bytes": 50176,
+      "us": 28.1
+    },
+    {
+      "link": "IB_NDR_400Gb(规格)",
+      "pp": 2,
+      "bytes": 7168,
+      "us": 7.6
+    },
+    {
+      "link": "IB_NDR_400Gb(规格)",
+      "pp": 4,
+      "bytes": 21504,
+      "us": 22.9
+    },
+    {
+      "link": "IB_NDR_400Gb(规格)",
+      "pp": 8,
+      "bytes": 50176,
+      "us": 53.5
+    }
+  ],
+  "tp_prefill_single_ar": [
+    {
+      "seq": 128,
+      "link": "NVLink4(H100规格)",
+      "ar_ms": 0.012
+    },
+    {
+      "seq": 128,
+      "link": "IB_NDR_400Gb(规格)",
+      "ar_ms": 0.055
+    },
+    {
+      "seq": 128,
+      "link": "PCIe4_x16(4090D实测)",
+      "ar_ms": 0.133
+    },
+    {
+      "seq": 2048,
+      "link": "NVLink4(H100规格)",
+      "ar_ms": 0.079
+    },
+    {
+      "seq": 2048,
+      "link": "IB_NDR_400Gb(规格)",
+      "ar_ms": 0.657
+    },
+    {
+      "seq": 2048,
+      "link": "PCIe4_x16(4090D实测)",
+      "ar_ms": 1.751
+    }
+  ],
+  "alpha_note": "α 为单次 NCCL collective 的典型固定延迟拟合值（launch+跳数，非本机实测），请以各集群 nccl-tests all_reduce_perf 实测替换；带宽项用 ch07 实测/公开规格",
+  "sources": "NVLink3 600GB/s、NVLink4 900GB/s、PCIe5 128GB/s 双向=2024 NVIDIA datasheet；IB NDR 400Gb/s=50GB/s=IBTA 规格；PCIe4 18.6GB/s=ch07 本机实测"
+}

@@ -1,0 +1,29 @@
+
+NOTICE: Existing SQLite export found: decode_profile.sqlite
+        It is assumed file was previously exported from: decode_profile.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [decode_profile.sqlite] with [/opt/nvidia/nsight-systems/2024.6.2/host-linux-x64/reports/cuda_api_sum.py]... 
+Time (%),Total Time (ns),Num Calls,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+63.0,282925778,62639,4516.8,2241.0,1930,42750485,214474.6,cudaLaunchKernel
+20.9,93695748,4955,18909.3,3237.0,1974,23587599,343366.4,cudaMemcpyAsync
+6.2,27726859,14,1980489.9,1865895.0,49688,3625829,1171716.2,cuLibraryLoadData
+3.7,16668050,128,130219.1,9736.5,1037,268002,131544.2,cudaDeviceSynchronize
+2.2,9862704,1,9862704.0,9862704.0,9862704,9862704,0.0,cudaProfilerStop
+1.9,8349101,419,19926.3,3754.0,2576,63541,23253.5,cudaStreamSynchronize
+0.7,3341999,48,69625.0,62723.5,2512,152865,25995.0,cudaMalloc
+0.5,2312794,2,1156397.0,1156397.0,1136624,1176170,27963.2,cudaGetDeviceProperties_v2_v12000
+0.3,1494137,1,1494137.0,1494137.0,1494137,1494137,0.0,cudaFree
+0.2,998939,169,5910.9,250.0,198,806230,62941.0,cuKernelGetFunction
+0.1,627278,1,627278.0,627278.0,627278,627278,0.0,cudaHostAlloc
+0.1,433052,169,2562.4,2207.0,1982,20342,1779.9,cuLaunchKernel
+0.1,336458,136,2474.0,233.0,68,12201,2643.1,cudaMemsetAsync
+0.0,96566,838,115.2,94.0,50,611,73.0,cuGetProcAddress_v2
+0.0,38686,16,2417.9,3400.5,310,4069,1637.6,cuLibraryGetKernel
+0.0,29407,45,653.5,513.0,409,2864,464.8,cudaStreamIsCapturing_v10000
+0.0,17687,18,982.6,219.5,192,10869,2498.6,cudaEventCreateWithFlags
+0.0,6360,1,6360.0,6360.0,6360,6360,0.0,cudaProfilerStart
+0.0,4171,4,1042.8,1027.0,517,1600,444.1,cuInit
+0.0,2676,3,892.0,99.0,89,2488,1382.2,cuModuleGetLoadingMode
+0.0,791,2,395.5,395.5,322,469,103.9,cudaGetDriverEntryPoint_v11030
+
