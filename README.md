@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.22（第 1–21 章已完成，逐章写作中）
+- **版本**：v0.23（第 1–22 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -112,8 +112,7 @@
 |---|---|---|---|---|---|
 | 20 | 48–49 | [投机解码：小模型打草稿，大模型批量验收](chapters/ch20-speculative-decoding.md) | 接受率与提速 1.6–2.8× 的数学；draft/target 匹配条件与失效场景；MTP/EAGLE 谱系；**动手实现极简投机解码并测接受率** | 10,000 | ✅ |
 | 21 | 50–51 | [PD 分离、分层 KV Cache 与 MoE 推理](chapters/ch21-pd-disagg-kv-tiering-moe.md) | prefill/decode 为什么该分家；KV 跨节点传输（RDMA/NVLink）的收益代价；GPU→CPU→SSD 三级缓存与长上下文 I/O；MoE 路由/负载均衡/异构调度为什么成新战场 | 11,000 | ✅ |
-| 22 | 52 | [Strata 双案精讲：窗口与边界](chapters/ch22-strata-deep-dive.md) | 两个 Strata 澄清（斯坦福+英伟达分层缓存论文 vs 开源消费级 MoE 引擎）；专家三层调度（GPU 约 4000 专家/内存全量/SSD 仓库）；5070 12G+64G 约 94 tok/s(Q2)/53 tok/s(IQ3_S) 实测核实；**诚实局限：单模型/新项目/匿名/AMD 超时/启动 OOM——当窗口不当地基** | 9,000 | ⏳ |
-
+| 22 | 52 | [Strata 双案精讲：窗口与边界](chapters/ch22-strata-deep-dive.md) | 两个 Strata 澄清（斯坦福+英伟达分层缓存论文 vs 开源消费级 MoE 引擎）；专家三层调度（GPU 约 4000 专家/内存全量/SSD 仓库）；5070 12G+64G 约 94 tok/s(Q2)/53 tok/s(IQ3_S) 实测核实；**诚实局限：单模型/新项目/匿名/AMD 超时/启动 OOM——当窗口不当地基** | 9,000 | ✅ |
 ### 阶段 8｜工程化（Day 53–55）
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
@@ -229,3 +228,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.20 | 第 19 章完成（同模型双引擎对打实验）：**方法论为主**——第三方对打数字四份盘点（jarvislabs H100、agentnative/spheron 112 vs 120 ms 与无前缀 2–5% 噪声口径、CSDN 2.4–4.1× 标未核原始出处、Bench360 arXiv:2511.16682 论文口径，均标检索 2026-10-16）；**七条控制变量清单**（ch16 五条扩成对打七条，缓存显式含源码核验 --no-enable-prefix-caching 与 /reset_prefix_cache 路由 :140）；三负载×三假设（H1 打平/H2 前缀/H3 崩溃点）与 prompt 集冻结方法；双引擎官方压测 CLI 对等出数（vllm bench serve 字段与示例值、sglang.bench_serving 四指标与 num-prompts≥5×C 稳态规则）；**崩溃点三条判定线**（L1 错误>1%、L2 p99 超 SLO、L3 吞吐环比<5%，回扣 ch05 40.9%/1900 tok/s）与五步扫描；报告八段模板+七坑+三任务+3 条面试话术；程序图 2 张（code/ch19/make_figures.py）；数据登记 code/ch19/RESULTS.md（含实测回填区）；零性能跑测 |
 | 2026-10-16 | v0.21 | 第 20 章完成（投机解码：小模型打草稿，大模型批量验收）：开山两篇原文口径（Leviathan arXiv:2211.17192 T5-XXL **2×–3× + identical outputs**、Chen arXiv:2302.01318 采样版）与**拒绝采样无损双口径表**（贪心逐位一致/采样同分布，Leviathan App.A.1 + arXiv:2607.17283 Proposition 1）；**加速比账公式 E=(1−α^(k+1))/(1−α)、S=E/(1+ck)** 与 5×4 代入表（脚本实算：α=0.35/k=7 跌到 0.90× 反证"低接受率加长草稿更慢"）、PayPal 生产反推（α≈35.5%、γ=3、吞吐 22–49% arXiv:2604.19767 反推 c≈0.05–0.06）；四路线谱系表（独立模型/Medusa 2.2–2.8×/MTP/EAGLE 2.7–3.5× 原文口径）+ vLLM 2026 官方方法矩阵与低/高 QPS 分档；draft-target 四类失效场景；**60 行极简投机解码动手任务**（基于 ch06 底座，L1 贪心逐位一致/L2 接受率分桶/L3 公式对账三验收）；七坑（含 KV 回滚、采样口径、高并发误用）+ 3 条面试话术；程序图 2 张（code/ch20/make_figures.py 含 print_table 算账输出）；数据登记 code/ch20/RESULTS.md（含实测回填区）；零性能跑测 |
 | 2026-10-16 | v0.22 | 第 21 章完成（PD 分离、分层 KV Cache 与 MoE 推理）：DistServe 7.4×/12.6× 沿用 ch14 口径 + Dynamo 官方三步与 NIXL（VRAM→VRAM、64–128 token/块、三家后端传输语义 bootstrap_info 可流水/kv_transfer_params 同步/opaque_state 同步，检索 2026-10-16）；KV 传输账零成本算术 11/224/1800 MB × NVLink 0.2/4.5/36 ms vs PCIe 0.7/14/113 ms；HiCache L1/L2/L3 官方原话与 G1–G4、下沉判据不等式（交叉带宽 0.672 GB/s，建模假设登记 RESULTS）；MoE 三类解法三选二（DeepSeek-V3 auxiliary-loss-free 原文、EPLB README、vLLM --enable-eplb）；程序图 2 张（code/ch21/make_figures.py），数据登记 code/ch21/RESULTS.md，零跑测。 |
+| 2026-10-16 | v0.23 | 第 22 章完成（Strata 双案精讲：窗口与边界，阶段 7 收官）：**案一论文 Strata**（arXiv:2508.18572，OSDI'26，2026-10-16 检索）——三瓶颈（分页碎片 I/O 低带宽/调度不知缓存 loading-bound/跨介质布局）与三设计（GPU-assisted I/O、解耦 GPU/CPU 布局、cache-aware 调度=延迟发车+均衡组批+Bubble Filling），摘要原文数字 **5×（对 vLLM+LMCache，up-to）/3.75×（对 TRT-LLM）/短上下文不劣化/deployed in production**；**案二开源 Strata**（github.com/Niko1221/Strata，MIT，README 口径）——125B MoE（Qwen3.8-Flash-Next）24,576 专家×每 token 10 个、专家三层（显存热缓存/RAM 全量/SSD 查表）、5070 自测表 Q2_0 94 vs IQ3_S 53 tok/s=1.77×（引擎 0.1.36/0.1.26、4K 出 32K 入脚注）、猜-验 1.6–1.8×、8K 大块 prefill、SSD 档 7–8.5 tok/s（换入悬崖实证）、首启锁 35–55 GB RAM；双案对照表 + **审读三步**（分口径→拆条件→对回尺子）+ 案二五条边界与三条判据；程序图 1 张（code/ch22/make_figures.py），数据登记 code/ch22/RESULTS.md（含四级口径分级表），零跑测。 |
