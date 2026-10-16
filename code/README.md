@@ -143,3 +143,16 @@ vLLM quantization 文档、OCP FP8 规范）全部标注来源与 2026-10-16 检
 （参数量）、arXiv:2505.02390/2601.14277/2306.00978（质量与速度）、llama.cpp
 perplexity README、Unsloth Dynamic 2.0 文档（KLD）。汇总见目录内 RESULTS.md；
 交付件在 `projects/quant-lab/8GB-selection-guide.md`。
+
+## ch12（对应[第 12 章](../chapters/ch12-llamacpp-offload-bench.md)）
+
+新风格：**无性能跑测、无脚本**；外部公开数据 + 三时延算账，2 张配图由
+matplotlib 生成（数据全部登记在 RESULTS.md 可复核重建）。
+
+| 文件 | 作用 |
+|---|---|
+| `RESULTS.md` | 数据源总表；offload 悬崖表（InventiveHQ）、并发样例表（官方 batched-bench README）、三时延算账输入与结果、配图清单 |
+
+数据源（全部 2026-10-16）：InventiveHQ "The VRAM Cliff"（2026-06-26 发布，
+数据/脚本开源）、llama.cpp `tools/batched-bench/README.md` 与 `docs/multi-gpu.md`
+与 `tools/server/README.md`、源码 commit e707790c、本书 ch03/ch04/ch07/ch10。
