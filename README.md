@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.24（第 1–23 章已完成，逐章写作中）
+- **版本**：v0.25（第 1–24 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -122,7 +122,7 @@
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
-| 24 | 53–58 | [**项目三：生产级部署与调优实战**](projects/p3-production-serving.md) | 多卡 TP 加速比；前缀缓存+Chunked Prefill 前后对比；压测到崩溃点并用 nsys/ncu 取证；调优报告；断网/OOM/掉卡故障演练；部署文档+面板截图（**求职二号作品**） | 10,000 | ⏳ |
+| 24 | 53–58 | [**项目三：生产级部署与调优实战**](projects/p3-production-serving.md) | 多卡 TP 加速比；前缀缓存+Chunked Prefill 前后对比；压测到崩溃点并用 nsys/ncu 取证；调优报告；断网/OOM/掉卡故障演练；部署文档+面板截图（**求职二号作品**） | 10,000 | ✅ |
 | 25 | 56–60 | [求职篇：简历、题库、模拟面试、作品集](chapters/ch25-job-hunting.md) | 5 组简历措辞对照；原理/实操/场景/前沿四类高频题；三轮模拟面试（技术深挖/系统设计/项目追问）参考答案框架；README/博客/现场白板架构图怎么展示 | 13,000 | ⏳ |
 
 ---
@@ -229,3 +229,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.22 | 第 21 章完成（PD 分离、分层 KV Cache 与 MoE 推理）：DistServe 7.4×/12.6× 沿用 ch14 口径 + Dynamo 官方三步与 NIXL（VRAM→VRAM、64–128 token/块、三家后端传输语义 bootstrap_info 可流水/kv_transfer_params 同步/opaque_state 同步，检索 2026-10-16）；KV 传输账零成本算术 11/224/1800 MB × NVLink 0.2/4.5/36 ms vs PCIe 0.7/14/113 ms；HiCache L1/L2/L3 官方原话与 G1–G4、下沉判据不等式（交叉带宽 0.672 GB/s，建模假设登记 RESULTS）；MoE 三类解法三选二（DeepSeek-V3 auxiliary-loss-free 原文、EPLB README、vLLM --enable-eplb）；程序图 2 张（code/ch21/make_figures.py），数据登记 code/ch21/RESULTS.md，零跑测。 |
 | 2026-10-16 | v0.23 | 第 22 章完成（Strata 双案精讲：窗口与边界，阶段 7 收官）：**案一论文 Strata**（arXiv:2508.18572，OSDI'26，2026-10-16 检索）——三瓶颈（分页碎片 I/O 低带宽/调度不知缓存 loading-bound/跨介质布局）与三设计（GPU-assisted I/O、解耦 GPU/CPU 布局、cache-aware 调度=延迟发车+均衡组批+Bubble Filling），摘要原文数字 **5×（对 vLLM+LMCache，up-to）/3.75×（对 TRT-LLM）/短上下文不劣化/deployed in production**；**案二开源 Strata**（github.com/Niko1221/Strata，MIT，README 口径）——125B MoE（Qwen3.8-Flash-Next）24,576 专家×每 token 10 个、专家三层（显存热缓存/RAM 全量/SSD 查表）、5070 自测表 Q2_0 94 vs IQ3_S 53 tok/s=1.77×（引擎 0.1.36/0.1.26、4K 出 32K 入脚注）、猜-验 1.6–1.8×、8K 大块 prefill、SSD 档 7–8.5 tok/s（换入悬崖实证）、首启锁 35–55 GB RAM；双案对照表 + **审读三步**（分口径→拆条件→对回尺子）+ 案二五条边界与三条判据；程序图 1 张（code/ch22/make_figures.py），数据登记 code/ch22/RESULTS.md（含四级口径分级表），零跑测。 |
 | 2026-10-17 | v0.24 | 第 23 章完成（从引擎到服务：API/K8S/可观测/容量/稳定性，阶段 8 主线完成）：**接入层四手段**（排队→限流→熔断→降级协作时序，限流点=满足SLO最大并发档−余量，绑 ch16/19 崩溃线；流式防网关缓冲）；**K8s GPU 调度官方口径**（2026-10-17 检索：《Schedule GPUs》GPU 只写 limits limit 自动作 request、《Device Plugins》nvidia.com/gpu、GPU Operator 时间片「拿隔离换共享」原话、MIG 硬隔离、Volcano PodGroup minMember Gang、Kthena PD 独立扩缩容+ServingGroup）；**vLLM /metrics 官方指标映射 ch05**（num_requests_waiting/gpu_cache_usage_perc/num_requests_swapped（v1 恒0 回扣 ch13））与告警三件套=ch19 三崩溃线；**Little 定律容量账**（N=X×R=80 在途，5+2=7 实例脚本实算）+ KEDA activation threshold 原话+冷启动进账；**三级降级 L1 参数/L2 算法/L3 架构**（先 L1 后 L3 编排逻辑）；合规 Deployment YAML 骨架；程序图 1 张（code/ch23/make_figures.py），数据登记 code/ch23/RESULTS.md，零跑测。 |
+| 2026-10-17 | v0.25 | 第 24 章完成（**项目三：生产级部署与调优实战**，projects/ 首个 p3 章节）：五模块（TP=2 部署+topo NV1/PIX 及格线、前缀缓存×Chunked Prefill D0-D3 四档 A/B 锁 md5、阶梯压测三崩溃线+nsys/ncu 取证、断网→L1/OOM→L3/掉卡→L3 三故障演练、Grafana 四排面板）+**四份交付物**（部署文档/调优报告/演练记录/面板截图）；**证据链五段格式**（现象→取证→归因→动作→验证）；六天里程碑每日一表；**数字铁律同项目一/二：零预填性能数字**，code/ch24/RESULTS.md 为四表+证据链回填容器（引用仅 ch05/14/16/19/23 登记值并标注）；程序图 1 张（code/ch24/make_figures.py），零跑测设计。 |
