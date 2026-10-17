@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.23（第 1–22 章已完成，逐章写作中）
+- **版本**：v0.24（第 1–23 章已完成，逐章写作中）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -117,8 +117,7 @@
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
 |---|---|---|---|---|---|
-| 23 | 53–55 | [从引擎到服务：API/K8S/可观测/容量/稳定性](chapters/ch23-serving-k8s-observability.md) | OpenAI 兼容 API、排队、限流熔断、负载均衡；Device Plugin/GPU Operator/Volcano/扩缩容；Prometheus+Grafana 监控指标与告警；容量规划与在线离线混部；三级降级预案；升华：传统 Infra 能力为何是底座 | 12,000 | ⏳ |
-
+| 23 | 53–55 | [从引擎到服务：API/K8S/可观测/容量/稳定性](chapters/ch23-serving-k8s-observability.md) | OpenAI 兼容 API、排队、限流熔断、负载均衡；Device Plugin/GPU Operator/Volcano/扩缩容；Prometheus+Grafana 监控指标与告警；容量规划与在线离线混部；三级降级预案；升华：传统 Infra 能力为何是底座 | 12,000 | ✅ |
 ### 贯穿项目三 + 阶段 9｜求职（Day 56–60）
 
 | 章 | 天 | 标题 | 核心内容 | 字数 | 状态 |
@@ -229,3 +228,4 @@ ai-infra-60days/
 | 2026-10-16 | v0.21 | 第 20 章完成（投机解码：小模型打草稿，大模型批量验收）：开山两篇原文口径（Leviathan arXiv:2211.17192 T5-XXL **2×–3× + identical outputs**、Chen arXiv:2302.01318 采样版）与**拒绝采样无损双口径表**（贪心逐位一致/采样同分布，Leviathan App.A.1 + arXiv:2607.17283 Proposition 1）；**加速比账公式 E=(1−α^(k+1))/(1−α)、S=E/(1+ck)** 与 5×4 代入表（脚本实算：α=0.35/k=7 跌到 0.90× 反证"低接受率加长草稿更慢"）、PayPal 生产反推（α≈35.5%、γ=3、吞吐 22–49% arXiv:2604.19767 反推 c≈0.05–0.06）；四路线谱系表（独立模型/Medusa 2.2–2.8×/MTP/EAGLE 2.7–3.5× 原文口径）+ vLLM 2026 官方方法矩阵与低/高 QPS 分档；draft-target 四类失效场景；**60 行极简投机解码动手任务**（基于 ch06 底座，L1 贪心逐位一致/L2 接受率分桶/L3 公式对账三验收）；七坑（含 KV 回滚、采样口径、高并发误用）+ 3 条面试话术；程序图 2 张（code/ch20/make_figures.py 含 print_table 算账输出）；数据登记 code/ch20/RESULTS.md（含实测回填区）；零性能跑测 |
 | 2026-10-16 | v0.22 | 第 21 章完成（PD 分离、分层 KV Cache 与 MoE 推理）：DistServe 7.4×/12.6× 沿用 ch14 口径 + Dynamo 官方三步与 NIXL（VRAM→VRAM、64–128 token/块、三家后端传输语义 bootstrap_info 可流水/kv_transfer_params 同步/opaque_state 同步，检索 2026-10-16）；KV 传输账零成本算术 11/224/1800 MB × NVLink 0.2/4.5/36 ms vs PCIe 0.7/14/113 ms；HiCache L1/L2/L3 官方原话与 G1–G4、下沉判据不等式（交叉带宽 0.672 GB/s，建模假设登记 RESULTS）；MoE 三类解法三选二（DeepSeek-V3 auxiliary-loss-free 原文、EPLB README、vLLM --enable-eplb）；程序图 2 张（code/ch21/make_figures.py），数据登记 code/ch21/RESULTS.md，零跑测。 |
 | 2026-10-16 | v0.23 | 第 22 章完成（Strata 双案精讲：窗口与边界，阶段 7 收官）：**案一论文 Strata**（arXiv:2508.18572，OSDI'26，2026-10-16 检索）——三瓶颈（分页碎片 I/O 低带宽/调度不知缓存 loading-bound/跨介质布局）与三设计（GPU-assisted I/O、解耦 GPU/CPU 布局、cache-aware 调度=延迟发车+均衡组批+Bubble Filling），摘要原文数字 **5×（对 vLLM+LMCache，up-to）/3.75×（对 TRT-LLM）/短上下文不劣化/deployed in production**；**案二开源 Strata**（github.com/Niko1221/Strata，MIT，README 口径）——125B MoE（Qwen3.8-Flash-Next）24,576 专家×每 token 10 个、专家三层（显存热缓存/RAM 全量/SSD 查表）、5070 自测表 Q2_0 94 vs IQ3_S 53 tok/s=1.77×（引擎 0.1.36/0.1.26、4K 出 32K 入脚注）、猜-验 1.6–1.8×、8K 大块 prefill、SSD 档 7–8.5 tok/s（换入悬崖实证）、首启锁 35–55 GB RAM；双案对照表 + **审读三步**（分口径→拆条件→对回尺子）+ 案二五条边界与三条判据；程序图 1 张（code/ch22/make_figures.py），数据登记 code/ch22/RESULTS.md（含四级口径分级表），零跑测。 |
+| 2026-10-17 | v0.24 | 第 23 章完成（从引擎到服务：API/K8S/可观测/容量/稳定性，阶段 8 主线完成）：**接入层四手段**（排队→限流→熔断→降级协作时序，限流点=满足SLO最大并发档−余量，绑 ch16/19 崩溃线；流式防网关缓冲）；**K8s GPU 调度官方口径**（2026-10-17 检索：《Schedule GPUs》GPU 只写 limits limit 自动作 request、《Device Plugins》nvidia.com/gpu、GPU Operator 时间片「拿隔离换共享」原话、MIG 硬隔离、Volcano PodGroup minMember Gang、Kthena PD 独立扩缩容+ServingGroup）；**vLLM /metrics 官方指标映射 ch05**（num_requests_waiting/gpu_cache_usage_perc/num_requests_swapped（v1 恒0 回扣 ch13））与告警三件套=ch19 三崩溃线；**Little 定律容量账**（N=X×R=80 在途，5+2=7 实例脚本实算）+ KEDA activation threshold 原话+冷启动进账；**三级降级 L1 参数/L2 算法/L3 架构**（先 L1 后 L3 编排逻辑）；合规 Deployment YAML 骨架；程序图 1 张（code/ch23/make_figures.py），数据登记 code/ch23/RESULTS.md，零跑测。 |
