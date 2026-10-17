@@ -285,7 +285,7 @@ while token_budget > 0:                                     # :967
 
 ---
 
-## 7. 落地视角：调度器的四个旋钮与它们的脾气
+## 7. 【落地视角】调度器的四个旋钮与它们的脾气
 
 生产上调 vLLM 调度，本质是在四个量之间做权衡——全部有源码依据（行号 @642c18d）：
 
@@ -301,6 +301,9 @@ while token_budget > 0:                                     # :967
 【应急方案】线上看到 `vllm:num_preemptions` 持续增长：立刻 `--max-num-seqs` 砍 30% 观察是否止血（一般立刻见效，因为块压力正来自收太多）；若要保并发，再看 KV 占用（`vllm:gpu_cache_usage` 口径见 `scheduler.py:2696` `get_kv_cache_usage()`）是否真满——没满却抢占，查 watermark 与 `scheduler_reserve_full_isl` 组合是否过保守。仍不止血 → 加显存或降模型精度（回扣第 10 章量化选型）。
 
 ---
+
+### 【化学家视角】
+Continuous batching 像**连续流动反应器的随时进料**：不是等一釜全反应完再出料（static batching），而是谁反应完谁出料、新料随时补位，让反应器永远有活干。调度预算（每步的 token 上限）就是进料阀的开度：开太大，出料口被堵（长 prefill 压住 decode，TTFT 抖）；开太小，反应器吃不饱（吞吐上不去）——四个旋钮调的全是这一对矛盾。
 
 ## 8. 【坑】清单 + 动手任务 + 自检 + 面试话术
 

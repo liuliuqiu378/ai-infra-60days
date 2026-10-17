@@ -4,7 +4,7 @@
 >
 > 这不是论文综述，不是源码注释，不是产品说明书。这是一份"拿起来就能学、学完就能干、面试能通过、能给别人讲明白"的实战指南。
 
-- **版本**：v0.26（第 1–25 章已完成，**全书 25 章主体收官**，后续补 8 个附录）
+- **版本**：v0.27（第 1–25 章 + 补全审读完成；8 附录确认不再新增）
 - **写作方式**：先目录、后逐章；每章完成后在仓库提交，并等待验收“继续”后再写下一章；自第 9 章起改为文字理论 + 论文/官方规范/权威评测公开数据为主的写法，减少本机性能跑测
 - **数字纪律**：所有关键数字必须可溯源；本机数字须与运行结果一致，外部数字须标注来源与检索日期；无法核实的标注【请联网检索最新实测数据补充】，绝不想当然
 
@@ -49,7 +49,7 @@
 
 ## 三、完整章节目录（含天数与预估字数）
 
-> 字数为预估中文字符数（含代码与图表），合计正文约 **25.6 万字**，附录约 **4.5 万字**，全书约 **30 万字**。
+> 字数为非空白字符数（含代码与图表）：正文（25 章 + 三大项目）实测合计约 **37.0 万字**（2026-10-17 统计）。附录 A–H 已于 2026-10-17 决定不再新增，见下方附录说明。
 > 状态：⏳ 未开始 / 🔄 写作中 / ✅ 已完成并推送
 
 ### 阶段 0｜破冰与行业（Day 1–2）
@@ -131,7 +131,7 @@
 
 | # | 项目 | 时间 | 场景 | 核心交付物 |
 |---|---|---|---|---|
-| 一 | [量化实验室](projects/p1-quantization-lab.md) | Day 16–19 | 8GB 老机器跑 7B，给出量化选型 | Q2_K/Q4_K_M/Q6_K/Q8_0 四维对照表（体积/显存/速度/质量）+ partial offload 掉速记录 +《选型建议》文档 |
+| 一 | [量化实验室](chapters/ch10-quantization-lab.md)（交付件 [8GB-selection-guide.md](projects/quant-lab/8GB-selection-guide.md)） | Day 16–19 | 8GB 老机器跑 7B，给出量化选型 | Q2_K/Q4_K_M/Q6_K/Q8_0 四维对照表（体积/显存/速度/质量）+ partial offload 掉速记录 +《选型建议》文档 |
 | 二 | [mini-vLLM 从零实现](projects/p2-mini-vllm.md) | Day 31–42 | 证明你懂引擎而非只会调 API | 500–1000 行 PyTorch（分页 KV + Continuous Batching + 调度器）+ benchmark + 仓库 README + 技术博客 |
 | 三 | [生产级部署与调优](projects/p3-production-serving.md) | Day 53–58 | vLLM 可对外服务、可观测、扛并发 | TP 部署、压测到崩、nsys/ncu 取证、调优报告、故障演练、Grafana 面板截图 |
 
@@ -141,14 +141,16 @@
 
 | 附录 | 标题 | 内容 | 字数 | 状态 |
 |---|---|---|---|---|
-| A | [心智模型总表：OS ↔ LLM 推理概念对照](appendix/appendix-a-mental-models.md) | 虚拟内存↔PagedAttention、页表↔Block Table、缺页↔cache miss、swap↔offload、CUDA Stream↔线程等全集 | 5,000 | ⏳ |
-| B | [显存计算速查](appendix/appendix-b-vram-estimation.md) | 给定参数量/精度/batch/seq_len 的权重+KV+激活估算公式与速算表 | 4,000 | ⏳ |
-| C | [主流引擎横评速查表](appendix/appendix-c-engine-cheatsheet.md) | 七引擎一表流：技术/优势/局限/场景/硬件/社区 | 5,000 | ⏳ |
-| D | [硬件选型与成本速查表](appendix/appendix-d-hardware-cost.md) | 消费级/数据中心卡规格、带宽、时价、配置模板与月度成本换算 | 5,000 | ⏳ |
-| E | [性能分析工具清单](appendix/appendix-e-profiling-tools.md) | nvidia-smi/nsys/ncu/py-spy/torch profiler/vllm metrics 用法与读图指南 | 6,000 | ⏳ |
-| F | [核心论文阅读路线](appendix/appendix-f-papers.md) | FlashAttention→PagedAttention→SGLang→SpecDec→PD 分离→Strata，每篇"读哪几节、记住哪句话" | 7,000 | ⏳ |
-| G | [60 天打卡表](appendix/appendix-g-checklist-60days.md) | 每天任务、验收标准、打卡框 | 4,000 | ⏳ |
-| H | [自检题库 100 题](appendix/appendix-h-100-questions.md) | 判断 + 简答，专治"看时全都会，做时全不会" | 9,000 | ⏳ |
+| A | 心智模型总表：OS ↔ LLM 推理概念对照 | 虚拟内存↔PagedAttention、页表↔Block Table、缺页↔cache miss、swap↔offload、CUDA Stream↔线程等全集 | 5,000 | — |
+| B | 显存计算速查 | 给定参数量/精度/batch/seq_len 的权重+KV+激活估算公式与速算表 | 4,000 | — |
+| C | 主流引擎横评速查表 | 七引擎一表流：技术/优势/局限/场景/硬件/社区 | 5,000 | — |
+| D | 硬件选型与成本速查表 | 消费级/数据中心卡规格、带宽、时价、配置模板与月度成本换算 | 5,000 | — |
+| E | 性能分析工具清单 | nvidia-smi/nsys/ncu/py-spy/torch profiler/vllm metrics 用法与读图指南 | 6,000 | — |
+| F | 核心论文阅读路线 | FlashAttention→PagedAttention→SGLang→SpecDec→PD 分离→Strata，每篇"读哪几节、记住哪句话" | 7,000 | — |
+| G | 60 天打卡表 | 每天任务、验收标准、打卡框 | 4,000 | — |
+| H | 自检题库 100 题 | 判断 + 简答，专治"看时全都会，做时全不会" | 9,000 | — |
+
+> **附录说明**：附录 A–H 于 2026-10-17 决定不再新增（正文 25 章 + 三大项目已覆盖全部主干内容，各章速查表/工具清单/题库已分散在正文中：心智模型对照见附录原设计内容由 ch11/ch13 正文承载，工具清单见 ch08/ch19，论文路线见 ch22，自检题库见各章自检三问）。
 
 ---
 
@@ -190,9 +192,9 @@
 ```
 ai-infra-60days/
 ├── README.md                 # 本文件：总地图 + 完整目录
-├── chapters/                 # 25 章正文（ch01–ch25）
+├── chapters/                 # 章节正文（ch01–ch16、ch18–ch25；ch17 见 projects/）
 ├── projects/                 # 三大项目说明书与交付模板（p1–p3）
-├── appendix/                 # 附录 A–H
+├── appendix/                 # 附录 A–H（2026-10-17 决定不再新增，目录保留作占位说明）
 ├── code/                     # 全书可运行脚本（按章编号，如 ch06/、ch17/）
 └── images/
     ├── figures/              # 自绘教学示意图
@@ -231,3 +233,4 @@ ai-infra-60days/
 | 2026-10-17 | v0.24 | 第 23 章完成（从引擎到服务：API/K8S/可观测/容量/稳定性，阶段 8 主线完成）：**接入层四手段**（排队→限流→熔断→降级协作时序，限流点=满足SLO最大并发档−余量，绑 ch16/19 崩溃线；流式防网关缓冲）；**K8s GPU 调度官方口径**（2026-10-17 检索：《Schedule GPUs》GPU 只写 limits limit 自动作 request、《Device Plugins》nvidia.com/gpu、GPU Operator 时间片「拿隔离换共享」原话、MIG 硬隔离、Volcano PodGroup minMember Gang、Kthena PD 独立扩缩容+ServingGroup）；**vLLM /metrics 官方指标映射 ch05**（num_requests_waiting/gpu_cache_usage_perc/num_requests_swapped（v1 恒0 回扣 ch13））与告警三件套=ch19 三崩溃线；**Little 定律容量账**（N=X×R=80 在途，5+2=7 实例脚本实算）+ KEDA activation threshold 原话+冷启动进账；**三级降级 L1 参数/L2 算法/L3 架构**（先 L1 后 L3 编排逻辑）；合规 Deployment YAML 骨架；程序图 1 张（code/ch23/make_figures.py），数据登记 code/ch23/RESULTS.md，零跑测。 |
 | 2026-10-17 | v0.25 | 第 24 章完成（**项目三：生产级部署与调优实战**，projects/ 首个 p3 章节）：五模块（TP=2 部署+topo NV1/PIX 及格线、前缀缓存×Chunked Prefill D0-D3 四档 A/B 锁 md5、阶梯压测三崩溃线+nsys/ncu 取证、断网→L1/OOM→L3/掉卡→L3 三故障演练、Grafana 四排面板）+**四份交付物**（部署文档/调优报告/演练记录/面板截图）；**证据链五段格式**（现象→取证→归因→动作→验证）；六天里程碑每日一表；**数字铁律同项目一/二：零预填性能数字**，code/ch24/RESULTS.md 为四表+证据链回填容器（引用仅 ch05/14/16/19/23 登记值并标注）；程序图 1 张（code/ch24/make_figures.py），零跑测设计。 |
 | 2026-10-17 | v0.26 | 第 25 章完成（**求职篇：简历、题库、模拟面试、作品集，全书 25 章主体收官**）：**5 组简历措辞对照**（职责→成果/名词堆砌→机制+证据/裸倍数→三限定词/含糊→作品锚点/技术栈罗列→JD 对位，正例性能数字全部留回填位）；**四类题答题框架**（原理=结论→机制→边界 30s/90s/5min 三档伸缩、实操=证据链五段、场景=澄清四问→Little→架构→风险、前沿=现状→代表→边界→判断）与 20 行黑话表对位；**三轮模拟面试**（技术深挖/系统设计/项目追问各自的考察目标、参考答案框架与露馅点 + 一票否决题五问）；**作品集四件展示**（README 30 秒法则、博客只写一个决策、白板 3 分钟五层+必写三数、演示 5 分钟脚本含离线纪律）；五天计划 D56–D60 每日一表；七坑、三任务+验收、自检三问、3 条面试话术（90 秒自我介绍/原理三档/证据链项目追问）。**零性能跑测、零外部性能数字**（全部回填位指向各章 RESULTS）；程序图 1 张（code/ch25/make_figures.py），回填登记 code/ch25/RESULTS.md（锚点总表+五区回填）。 |
+| 2026-10-17 | v0.27 | **全书审读补全**（不新增内容，修补既定约束）：① 修 README 9 条断链（p1 链接指向 ch10+quant-lab 交付件、8 个附录死链按"不再新增"处理）；② **ch01–ch09 补齐四固定小节**（【落地视角】【化学家视角】【应急方案】面试话术各 3 条），ch10–13 补【落地视角】【化学家视角】【应急方案】，ch14 标题补【】、ch15/16/18/p2 补【化学家视角】——现 25 章+项目二/三固定小节零缺口；③ **小白摩擦点**：ch01–09 每章开头加"前置知识路标"（需要什么/不需要什么/脚本在哪），ch03/06/07/10/12 各加一段可复制 ```bash``` 运行命令块（指向 code/ 真实脚本）；④ 字数行更正为实测 37.0 万字、目录结构注释修正 ch17 位置。项目二/三 RESULTS 保持回填设计不实跑（用户确认）。 |
